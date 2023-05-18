@@ -1,7 +1,24 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
+import {RouterView, useRoute} from 'vue-router'
+import {ref} from "vue";
+
+import Toast from "@/components/Toast.vue";
+import LoadingPage from "@/components/LoadingPage.vue"
+
+
+const route = useRoute();
+const isLoadingPage = ref(true)
+
+if (route.name == "login") {
+  isLoadingPage.value = false
+} else {
+  isLoadingPage.value = false
+}
+
 </script>
 
 <template>
-  <RouterView />
+  <Toast />
+  <LoadingPage v-if="isLoadingPage" />
+  <RouterView v-else />
 </template>
