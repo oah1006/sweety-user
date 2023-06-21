@@ -3,7 +3,7 @@
     <Header />
     <div class="mt-14 w-full relative">
       <div class="bg-gradient-to-r from-white via-orange-100 to-cyan-100">
-        <div class="z-20 bg-[length:80%] bg-[url('images/banner2.png')] bg-no-repeat bg-contain bg-cover bg-right w-full h-[580px]">
+        <div class="z-20 bg-[length:80%] bg-[url('./images/banner2.png')] bg-no-repeat bg-contain bg-cover bg-right w-full h-[580px]">
           <div class="pt-12 lg:ml-32 mx-16 text-zinc-700 text-4xl font-bold">
             <p>Trà sữa tươi ngon</p>
             <p class="lg:px-10">đủ để làm hài lòng mọi tâm hồn!</p>
@@ -15,14 +15,14 @@
               <button @click="redirectRegister" class="underline text-xl">Đăng ký</button>
             </div>
           </div>
-          <img src="images/banner10.png" class="absolute object-contain w-80 h-80 bottom-0 -left-10 hidden md:block lg:block xl:block" />
+          <img src="./images/banner10.png" class="absolute object-contain w-80 h-80 bottom-0 -left-10 hidden md:block lg:block xl:block" />
           <div class="hidden xl:block" >
-            <img src="images/banner5.png" class="absolute object-contain w-80 h-80 top-64 left-[500px]" />
-            <img src="images/banner4.png" class="absolute object-contain w-96 h-96 top-32 right-72" />
-            <img src="images/banner3.png" class="absolute object-contain w-80 h-80 top-44 right-10" />
-            <img src="images/banner7.png" class="absolute object-contain w-36 w-36 top-96 right-[520px]" />
-            <img src="images/banner6.png" class="absolute object-contain w-36 w-36 top-96 right-40" />
-            <img src="images/banner8.png" class="absolute object-contain w-36 w-36 top-[450px] left-[480px]" />
+            <img src="./images/banner5.png" class="absolute object-contain w-80 h-80 top-64 left-[500px]" />
+            <img src="./images/banner4.png" class="absolute object-contain w-96 h-96 top-32 right-72" />
+            <img src="./images/banner3.png" class="absolute object-contain w-80 h-80 top-44 right-10" />
+            <img src="./banner7.png" class="absolute object-contain w-36 w-36 top-96 right-[520px]" />
+            <img src="./images/banner6.png" class="absolute object-contain w-36 w-36 top-96 right-40" />
+            <img src="./images/banner8.png" class="absolute object-contain w-36 w-36 top-[450px] left-[480px]" />
           </div>
         </div>
       </div>
