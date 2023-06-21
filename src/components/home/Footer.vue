@@ -1,5 +1,5 @@
 <template>
-  <div class="z-20 bg-[url('./public/images/footer-2.jpg')] brightness-50 bg-cover bg-right w-full h-64">
+  <div class="z-20 bg-[url('../../images/footer-2.jpg')] brightness-50 bg-cover bg-right w-full h-64">
     <div class="flex items-center justify-between h-full">
       <div class="text-white flex flex-col items-center z-50 flex-none w-1/2">
         <div>

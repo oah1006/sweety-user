@@ -34,7 +34,7 @@
       </div>
     </div>
     <div class="xl:w-3/5 lg:w-2/5 md:w-2/5 grow relative overflow-hidden hidden md:block lg:block xl:block">
-      <img src="./images/coffee-shop-1.jpg" class="w-full h-full object-cover">
+      <img src="../../images/coffee-shop-1.jpg" class="w-full h-full object-cover">
       <div class="absolute -bottom-10 opacity-80 blur-lg bg-black w-full h-56"></div>
     </div>
   </div>
