@@ -14,13 +14,13 @@
       class="mySwiper"
   >
     <swiper-slide>
-      <img src="images/slider_1.png" class="h-full w-full object-contain">
+      <img src="./images/slider_1.png" class="h-full w-full object-contain">
     </swiper-slide>
     <swiper-slide>
-      <img src="images/slider_2.png" class="h-full w-full object-contain">
+      <img src="./images/slider_2.png" class="h-full w-full object-contain">
     </swiper-slide>
     <swiper-slide>
-      <img src="images/slider_3.png" class="h-full w-full object-contain">
+      <img src="./images/slider_3.png" class="h-full w-full object-contain">
     </swiper-slide>
   </swiper>
 </template>
