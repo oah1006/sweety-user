@@ -3,7 +3,7 @@
     <div class="flex items-center justify-between h-full">
       <div class="text-white flex flex-col items-center z-50 flex-none w-1/2">
         <div>
-          <img src="../../../public/images/logo-1.png" class="w-24 h-24 object-cover z-50" />
+          <img src="../../images/logo-1.png" class="w-24 h-24 object-cover z-50" />
           <p class="mt-3 text-lg font-bold">Chuỗi cửa hàng trà sữa Sweety</p>
           <p class="mt-3">Địa chỉ: 101 Tây Hòa, Phước Long A, quận 9, TP. Hồ Chí Minh</p>
           <p>Số điện thoại: (0123-456-789)</p>

@@ -1,7 +1,7 @@
 <template>
   <div class="py-3 flex items-center justify-between">
     <div class="flex items-center gap-4">
-      <img src="../../../public/images/product-1.jpg" class="w-24 h-24 object-cover" />
+      <img src="../../images/product-1.jpg" class="w-24 h-24 object-cover" />
       <div>
         <p class="text-lg font-medium">{{ props.nameProduct }}</p>
         <div class="flex items-center gap-6">

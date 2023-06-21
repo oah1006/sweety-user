@@ -13,7 +13,7 @@
       <p class="text-xl text-cyan-500 font-medium border-b border-cyan-500">Thông tin nhân viên vận chuyển</p>
       <div class="mt-3">
         <div v-if="props.nameDeliveryStaff" class="flex flex-col items-center justify-center px-10 py-2">
-          <img src="../../../public/images/product-1.jpg" class="w-32 h-32 object-cover rounded-full text-center"/>
+          <img src="../../images/product-1.jpg" class="w-32 h-32 object-cover rounded-full text-center"/>
           <p class="text-green-700 font-bold mt-4">{{ props.nameDeliveryStaff }}</p>
           <p class="text-zinc-500 mt-1">{{ props.phoneNumberDeliveryStaff }}</p>
         </div>

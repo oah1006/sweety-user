@@ -4,7 +4,7 @@
       <router-link :to="{ name: 'home' }" class="px-4 py-2 underline text-cyan-500 text-lg ">Trang chủ</router-link>
       <div class="mt-10">
         <div class="flex items-center justify-center">
-          <img src="./public/images/logo.png" class="w-32 h-32 object-cover" />
+          <img src="../../images/logo.png" class="w-32 h-32 object-cover" />
         </div>
         <form class="mt-10 px-20" @submit.prevent="submit">
           <p class="text-2xl font-bold text-center">Đăng nhập</p>

@@ -22,13 +22,13 @@
           </div>
           <div class="ml-44">
             <div class="w-96 h-96 flex items-center rounded-full bg-gradient-to-r from-orange-400 to-red-700">
-              <img src="./public/images/logo-1.png" class="mx-auto w-56 h-56" />
+              <img src="../images/logo-1.png" class="mx-auto w-56 h-56" />
             </div>
           </div>
         </div>
         <div class="flex items-center mt-20 px-20 gap-10">
           <div class="w-1/2 grow flex">
-            <img src="./public/images/store-1.jpg" class="rounded-2xl" />
+            <img src="../images/store-1.jpg" class="rounded-2xl" />
           </div>
           <div class="w-1/2">
             <p class="text-5xl text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-black">Trà sữa Sweety</p>

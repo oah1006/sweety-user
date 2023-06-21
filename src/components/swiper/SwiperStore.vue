@@ -14,16 +14,16 @@
       class="mySwiper"
   >
     <swiper-slide>
-      <img src="./public/images/store_1.jpg" class="h-full w-full">
+      <img src="../../images/store_1.jpg" class="h-full w-full">
     </swiper-slide>
     <swiper-slide>
-      <img src="./public/images/store_2.jpg" class="h-full w-full">
+      <img src="../../images/store_2.jpg" class="h-full w-full">
     </swiper-slide>
     <swiper-slide>
-      <img src="./public/images/store_3.jpg" class="h-full w-full">
+      <img src="../../images/store_3.jpg" class="h-full w-full">
     </swiper-slide>
     <swiper-slide>
-      <img src="./public/images/store_4.jpg" class="h-full w-full">
+      <img src="../../images/store_4.jpg" class="h-full w-full">
     </swiper-slide>
   </swiper>
 </template>

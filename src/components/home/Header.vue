@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center justify-between px-6 sm:px-6 md:px-6 lg:px-10 xl:px-20 py-2 z-40 fixed top-0 w-full bg-white">
-    <img @click="redirectHome" src="../../../public/images/logo.png" class="w-12 h-12 object-cover" />
+    <img @click="redirectHome" src="../../images/logo.png" class="w-12 h-12 object-cover" />
     <div class="hidden lg:block">
       <ul id="hello" class="flex items-center text-zinc-500 gap-7 text-lg cursor-pointer">
         <router-link :to="{ name: 'home' }" class="hover:underline hover:text-orange-500">Trang chủ</router-link>

@@ -3,7 +3,7 @@
     <div class="bg-white w-1/3 z-50 px-4 py-4 shadow-2xl rounded-3xl my-4">
       <router-link :to="{ name: 'send-otp' }" class="underline text-orange-500">Quay lại</router-link>
       <div class="flex items-center justify-center">
-        <img src="./public/images/logo.png" class="w-24 h-24 object-cover" />
+        <img src="../../images/logo.png" class="w-24 h-24 object-cover" />
       </div>
       <p class="text-2xl font-bold text-center mt-4">Khôi phục mật khẩu</p>
       <p class="text-center text-zinc-600 mt-1">Đến bước này, bạn đã có thể lấy lại mật khẩu của mình rồi!</p>
