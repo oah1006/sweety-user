@@ -1,8 +1,8 @@
 <template>
   <div class="fixed top-0 left-0 w-full flex h-screen justify-center items-center transition duration-700 ease-in-out">
-    <div class="absolute opacity-20 bg-black w-full h-screen flex items-center z-10">
+    <div class="absolute opacity-20 bg-black w-full h-screen flex items-center z-50">
     </div>
-    <div class="w-1/3 mx-auto rounded-lg shadow-md z-50">
+    <div class="w-1/3 mx-auto rounded-lg shadow-md z-50 mb-44">
       <div class="bg-white px-8 py-8">
         <p class="text-xl">Đây là địa chỉ <span class="text-red-500 font-bold">mặc định</span>, bạn có muốn xóa không?</p>
         <p class="text-zinc-500 mt-2 text-sm">Hành động này sẽ không thể hoàn tác khi thực hiện, bạn hãy xác nhận lần cuối và tiếp tục</p>

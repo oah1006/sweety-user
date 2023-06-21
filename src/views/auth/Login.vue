@@ -1,10 +1,10 @@
 <template>
   <div class="flex min-h-screen">
-    <div class="w-2/5">
-      <router-link :to="{ name: 'home' }" class="px-4 py-2 underline text-cyan-500 text-lg">Trang chủ</router-link>
-      <div class="flex flex-col items-center h-full mt-14">
+    <div class="xl:w-2/5 lg:w-3/5 md:w-4/5 flex flex-col">
+      <router-link :to="{ name: 'home' }" class="px-4 py-2 underline text-cyan-500 text-lg ">Trang chủ</router-link>
+      <div class="mt-10">
         <div class="flex items-center justify-center">
-          <img src="images/logo.png" class="w-28 h-32 object-cover" />
+          <img src="images/logo.png" class="w-32 h-32 object-cover" />
         </div>
         <form class="mt-10 px-20" @submit.prevent="submit">
           <p class="text-2xl font-bold text-center">Đăng nhập</p>
@@ -18,14 +18,14 @@
           </div>
           <div class="mt-4">
             <p>Mật khẩu</p>
-            <input type="text" name="Mật khẩu" v-model="customer.password" placeholder="Mật khẩu" class="outline-orange-500/[.55] mt-1 w-full text-gray-700 bg-white border border-solid border-zinc-300 rounded py-2 px-4">
+            <input type="password" name="Mật khẩu" v-model="customer.password" placeholder="Mật khẩu" class="outline-orange-500/[.55] mt-1 w-full text-gray-700 bg-white border border-solid border-zinc-300 rounded py-2 px-4">
           </div>
           <button type="submit" class="px-4 py-2 bg-orange-400 w-full mt-8 rounded-md text-white font-bold">Đăng nhập</button>
-          <div class="flex items-center gap-10 mt-3">
-            <div class="mr-auto">
+          <div class="lg:flex lg:items-center lg:gap-10 lg:mt-3">
+            <div class="mr-auto mt-2">
               <router-link :to="{ name: 'send-otp' }" class="mx-auto underline text-zinc-700">Quên mật khẩu?</router-link>
             </div>
-            <div class="flex gap-2 items-center ml-auto">
+            <div class="flex gap-2 items-center ml-auto mt-2">
               <p>Nếu bạn chưa có tài khoản? </p>
               <router-link :to="{ name: 'register' }" class="text-cyan-500 underline">Đăng ký</router-link>
             </div>
@@ -33,7 +33,7 @@
         </form>
       </div>
     </div>
-    <div class="w-3/5 relative overflow-hidden">
+    <div class="xl:w-3/5 lg:w-2/5 md:w-2/5 grow relative overflow-hidden hidden md:block lg:block xl:block">
       <img src="images/coffee-shop-1.jpg" class="w-full h-full object-cover">
       <div class="absolute -bottom-10 opacity-80 blur-lg bg-black w-full h-56"></div>
     </div>
@@ -65,7 +65,6 @@ function submit() {
         router.push({ name: 'home' })
       })
       .catch((error) => {
-        console.log(error.response.data)
         errors.value = error.response.data
       })
 }

@@ -12,10 +12,13 @@
     <div class="border border-cyan-300 px-3 py-5 rounded-lg shadow-lg w-1/2 h-72">
       <p class="text-xl text-cyan-500 font-medium border-b border-cyan-500">Thông tin nhân viên vận chuyển</p>
       <div class="mt-3">
-        <div class="flex flex-col items-center justify-center px-10 py-2">
+        <div v-if="props.nameDeliveryStaff" class="flex flex-col items-center justify-center px-10 py-2">
           <img src="../../../public/images/product-1.jpg" class="w-32 h-32 object-cover rounded-full text-center"/>
           <p class="text-green-700 font-bold mt-4">{{ props.nameDeliveryStaff }}</p>
           <p class="text-zinc-500 mt-1">{{ props.phoneNumberDeliveryStaff }}</p>
+        </div>
+        <div v-else class="flex flex-col items-center justify-between px-10 py-10">
+          <p class="text-zinc-600">Chưa cập nhật nhân viên vận chuyển. Xin quý khách vui lòng đợi cho đến khi nhân viên vận chuyển nhận đơn</p>
         </div>
       </div>
     </div>

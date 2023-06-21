@@ -1,14 +1,14 @@
 <template>
-  <Header></Header>
-  <LayoutProduct>
+  <Header class=""></Header>
+  <LayoutProduct v-if="!isLoadingPage" class="mt-14">
     <template #input-search>
-      <InputSearch :isLoadingPage="isLoadingPage" @filter-data="filterData" v-model:modalSearch="search"></InputSearch>
+      <InputSearch :isLoadingListProduct="isLoadingListProduct" @filter-data="filterData" v-model:modalSearch="search"></InputSearch>
     </template>
     <template #sidebar-menu>
       <div class="mt-6 text-lg text-zinc-500">
         <p @click="reset" :class="[isCategory == '' ? 'text-orange-500 !border-orange-500 underline' : '']" class="cursor-pointer">Tất cả</p>
         <div v-for="category in categories" :key="category.id">
-          <p @click="filterData(category.id)" :class="[isCategory == category.id ? 'text-orange-500 !border-orange-500 underline' : '']" class="hover:text-orange-500 cursor-pointer mt-3">{{ category.name }}</p>
+          <p @click="filterData(category.id, currentSort.price_low_to_high, currentSort.price_high_to_low)" :class="[isCategory == category.id ? 'text-orange-500 !border-orange-500 underline' : '']" class="hover:text-orange-500 cursor-pointer mt-3">{{ category.name }}</p>
         </div>
       </div>
     </template>
@@ -23,36 +23,43 @@
           </div>
         </div>
         <div v-if="isPopup" class="bg-white border border-zinc-400 absolute top-10 right-0">
-          <p @click="filterData('', '', '')" class="hover:bg-orange-50 px-6 py-3 text-md cursor-pointer font-medium text-zinc-600">Không</p>
-          <p @click="filterData('', 'price_low_to_high', '')" class="hover:bg-orange-50 px-6 py-3 text-md cursor-pointer font-medium text-zinc-600">Giá từ thấp đến cao</p>
-          <p @click="filterData('', '', 'price_high_to_low')" class="hover:bg-orange-50 px-6 py-3 text-md cursor-pointer font-medium text-zinc-600">Giá từ cao đến thấp</p>
+          <p @click="filterData(null, '', '')" class="hover:bg-orange-50 px-6 py-3 text-md cursor-pointer font-medium text-zinc-600">Không</p>
+          <p @click="filterData(isCategory, 'price_low_to_high')" class="hover:bg-orange-50 px-6 py-3 text-md cursor-pointer font-medium text-zinc-600">Giá từ thấp đến cao</p>
+          <p @click="filterData(isCategory, '', 'price_high_to_low')" class="hover:bg-orange-50 px-6 py-3 text-md cursor-pointer font-medium text-zinc-600">Giá từ cao đến thấp</p>
         </div>
       </div>
     </template>
     <template #list-products>
-      <div class="grid grid-cols-3 gap-6 mt-6" v-if="!isLoadingPage">
+      <div class="grid grid-cols-3 gap-6 mt-6" v-if="!isLoadingListProduct">
         <div v-for="product in products" :key="product.id">
-          <LayoutListProduct :nameProduct="product.name" :price="product.price" :url="product.attachment[0]?.url">
+          <LayoutListProduct :id="product.id" :product="product" :nameProduct="product.name" :price="product.price" :url="product.attachment[0]?.url">
 
           </LayoutListProduct>
         </div>
       </div>
-      <LoadingPage v-else></LoadingPage>
+      <LoadingListProduct v-else />
+      <Pagination :total="pagination.total" :last-page="pagination.lastPage" v-model:modelValue="page"
+                  v-model:modelBoolean="isLoadingListProduct" @get-data="getData" />
     </template>
   </LayoutProduct>
+  <LoadingPage v-else></LoadingPage>
+  <Footer />
 </template>
+
+
 <script setup>
 import LayoutProduct from "@/components/layout/LayoutProduct.vue";
 import InputSearch from "@/components/input/InputSearch.vue";
 import Header from "@/components/home/Header.vue";
 import LayoutListProduct from "@/components/layout/LayoutListProduct.vue";
+import LoadingPage from "@/components/LoadingPage.vue";
+import LoadingListProduct from "@/components/LoadingListProduct.vue";
 
 import {useIndexProductApi} from "@/repositories/product";
-import { ref } from "vue";
-import LoadingPage from "@/components/LoadingPage.vue";
+import {ref, watch} from "vue";
 import { useIndexCategoryApi } from "@/repositories/category";
-import InputFilterPrice from "@/components/input/InputFilterPrice.vue";
-
+import Footer from "@/components/home/Footer.vue";
+import Pagination from "@/components/Pagination.vue";
 
 const categories = ref({})
 
@@ -60,7 +67,8 @@ const products = ref({})
 
 const search = ref('')
 
-const isLoadingPage = ref(false)
+const isLoadingPage = ref(true)
+const isLoadingListProduct = ref(true)
 
 const debounce = ref(0)
 
@@ -69,6 +77,19 @@ const isCategory = ref('')
 const isPopup = ref(false)
 
 const label = ref('Bộ lọc')
+
+const currentSort = ref({
+  price_low_to_high: '',
+  price_high_to_low: ''
+})
+
+const page = ref(1);
+
+const pagination = ref({
+  total: null,
+  lastPage: null
+});
+
 
 function showPopup() {
   isPopup.value = !isPopup.value
@@ -81,57 +102,64 @@ function getDataCategory() {
       })
 }
 
-getDataCategory()
-
 function getData() {
-    useIndexProductApi()
+    useIndexProductApi(page.value)
         .then((response) => {
-          console.log(response.data.data.data)
+          pagination.value.lastPage = response.data.data.last_page
+          pagination.value.total = response.data.data.total
+
           products.value = response.data.data.data
+
+          isLoadingPage.value = false
+          isLoadingListProduct.value = false
         })
 }
 
-getData()
-
-function filterData(id = '', price_low_to_high = '', price_high_to_low = '') {
+function filterData(id = null, price_low_to_high = '', price_high_to_low = '') {
   clearTimeout(debounce.value)
 
   isCategory.value = id
 
-  if (price_low_to_high == 'price_low_to_high') {
+  if (price_low_to_high) {
     label.value = 'Giá từ thấp đến cao'
     isPopup.value = false
-  } else if (price_high_to_low == 'price_high_to_low') {
+    currentSort.value.price_low_to_high = price_low_to_high
+  } else if (price_high_to_low) {
     label.value = 'Giá từ cao đến thấp'
     isPopup.value = false
-  } else if (price_low_to_high == '' && price_high_to_low == '') {
+    currentSort.value.price_high_to_low =  price_high_to_low
+  } else {
     label.value = 'Bộ lọc'
     isPopup.value = false
+    currentSort.value.price_high_to_low = ''
+    currentSort.value.price_low_to_high = ''
   }
 
   debounce.value = setTimeout(() => {
-    isLoadingPage.value = true
+    isLoadingListProduct.value = true
 
-    useIndexProductApi(search.value, id, price_low_to_high, price_high_to_low)
+    useIndexProductApi(page.value, search.value, id, currentSort.value.price_low_to_high ,currentSort.value.price_high_to_low)
         .then((response) => {
           products.value = response.data.data.data
-          isLoadingPage.value = false
+
+          isLoadingListProduct.value = false
         })
   }, 400)
 }
 
 function reset() {
   isCategory.value = ''
-  useIndexProductApi(search.value = '', '')
+  useIndexProductApi(page.value, search.value = '', '')
       .then((response) => {
         products.value = response.data.data.data
         isLoadingPage.value = false
       })
 }
 
-function priceHighToLow() {
 
-}
+getData()
+getDataCategory()
+
 
 
 </script>

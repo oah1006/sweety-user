@@ -59,6 +59,7 @@
     </template>
   </LayoutProfile>
   <LoadingPage v-else />
+  <Footer />
 </template>
 
 <script setup>
@@ -86,6 +87,7 @@ import InputLat from "@/components/input/InputLat.vue";
 import {useRoute, useRouter} from "vue-router";
 import {useIndexGetCoodinatesApi} from "@/repositories/get-coordinates";
 import {useToastStore} from "@/stores/toast";
+import Footer from "@/components/home/Footer.vue";
 
 const router = useRouter();
 const route = useRoute();

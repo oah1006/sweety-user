@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-32 py-6">
+  <div class="mx-32 py-6 mb-44">
     <div class="border-b border-zinc-300 ">
       <p class="text-2xl font-bold">Hồ sơ cá nhân</p>
     </div>
@@ -12,5 +12,4 @@
       </div>
     </div>
   </div>
-
 </template>

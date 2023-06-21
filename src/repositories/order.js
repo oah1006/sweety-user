@@ -1,7 +1,7 @@
 import axios from "axios";
 import {useRoute} from "vue-router";
 
-export function useIndexOrderApi(status = '') {
+export function useIndexOrderApi(page = null, status = '') {
     const token = $cookies.get('token')
 
     const config = {
@@ -9,6 +9,7 @@ export function useIndexOrderApi(status = '') {
             Authorization: `Bearer ${token}`,
         },
         params: {
+            page,
             status
         }
     }
@@ -17,11 +18,8 @@ export function useIndexOrderApi(status = '') {
         .get('http://127.0.0.1:8000/public/orders?', config)
 }
 
-export function useDetailOrderApi() {
+export function useDetailOrderApi(id) {
     const token = $cookies.get('token')
-
-    const route = useRoute();
-    const id = route.params.id
 
     const config = {
         headers: {
@@ -44,4 +42,19 @@ export function useUpdateStatusCanceledOrderApi(id) {
 
     return axios
         .put('http://127.0.0.1:8000/public/orders/update-status-canceled/' + id, {}, config)
+}
+
+export function useStoreOrderApi() {
+
+    const token = $cookies.get('token')
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: 'application/json',
+        },
+    }
+
+    return axios
+        .post('http://127.0.0.1:8000/public/orders', {}, config)
 }

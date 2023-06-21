@@ -1,5 +1,5 @@
 <template>
-    <div class="px-5 rounded-lg shadow-md shadow-orange-200 py-5">
+    <div class="px-5 rounded-lg border border-zinc-300 py-5">
       <div class="flex gap-4 w-full items-center">
         <p @click="useClickRedirectDetail(props.orderId)" class="text-lg font-medium text-red-500 hover:underline cursor-pointer">{{ props.code }}</p>
         <PendingStatus v-if="props.status == 'pending'"></PendingStatus>

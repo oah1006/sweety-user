@@ -20,5 +20,5 @@ if (route.name == "login") {
 <template>
   <Toast />
   <LoadingPage v-if="isLoadingPage" />
-  <RouterView v-else />
+  <RouterView :key="route.fullPath" v-else />
 </template>

@@ -27,6 +27,7 @@
       </LayoutInformation>
     </template>
   </LayoutProfile>
+  <Footer />
 </template>
 
 <script setup>
@@ -40,6 +41,7 @@ import InputName from "@/components/input/InputName.vue";
 import InputEmail from "@/components/input/InputEmail.vue";
 import TagNotification from "@/components/TagNotification.vue";
 import InputGender from "@/components/input/InputGender.vue";
+import Footer from "@/components/home/Footer.vue"
 
 import {useUpdateProfileApi} from "@/repositories/auth";
 import {ref} from "vue";

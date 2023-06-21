@@ -5,17 +5,20 @@
       <div>
         <p class="text-lg font-medium">{{ props.nameProduct }}</p>
         <div class="flex items-center gap-6">
-          <p class="text-zinc-500">Size: M</p>
-          <p class="text-zinc-500">Giá tiền: {{ formatPrice(props.unitPrice) }} đồng</p>
+          <p class="text-zinc-500">Size: {{ props.nameSizeProduct }}</p>
+          <p class="text-zinc-500">Giá tiền: {{ formatPrice(props.unitPriceSizeProduct) }} đồng</p>
+        </div>
+        <div v-for="item_topping in props.item.order_item_options">
+          <p class="text-sm text-zinc-500">{{ item_topping.topping?.name }} x {{ item_topping.qty }}</p>
         </div>
       </div>
     </div>
     <div>
       <div class="flex items-center gap-2 text-zinc-500">
         <p>{{ formatPrice(props.unitPrice) }} đồng</p>
-        <p>x {{ props.quantity }}</p>
+        <p>x {{ props.qty }}</p>
       </div>
-      <p>Tổng: <span class="text-red-600 font-bold">{{ formatPrice(props.unitPrice * props.quantity) }} đồng</span> </p>
+      <p>Tổng: <span class="text-red-600 font-bold">{{ formatPrice(props.item.totalPrice * props.item.qty) }} đồng</span> </p>
     </div>
   </div>
 </template>
@@ -24,8 +27,11 @@
 
 const props = defineProps({
   nameProduct: String,
-  quantity: String,
+  nameSizeProduct: String,
+  unitPriceSizeProduct: String,
+  qty: String,
   unitPrice: String,
+  item: Object
 })
 
 function formatPrice(price) {

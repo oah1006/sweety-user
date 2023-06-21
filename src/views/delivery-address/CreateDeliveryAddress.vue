@@ -45,11 +45,14 @@
             </template>
             <template #get-coordinates>
               <BoxGetCoordinates name="Tính tọa độ" padding="py-3">
+                <template #input-lat>
+                  <InputLat placeholder="Vĩ độ" :placeholder="delivery_address.lat" v-model:modelLat="delivery_address.lat"/>
+                </template>
                 <template #input-long>
                   <InputLong placeholder="Kinh độ" :placeholder="delivery_address.long" v-model:modelLong="delivery_address.long" />
                 </template>
-                <template #input-lat>
-                  <InputLat placeholder="Vĩ độ" :placeholder="delivery_address.lat" v-model:modelLat="delivery_address.lat"/>
+                <template #button-coordinates>
+                  <ButtonLoadCoordinates @load-coordinates="loadCoordinates" />
                 </template>
               </BoxGetCoordinates>
             </template>
@@ -58,6 +61,7 @@
       </LayoutCreateDeliveryAddress>
     </template>
   </LayoutProfile>
+  <Footer />
 </template>
 
 <script setup>
@@ -78,13 +82,15 @@ import InputPhoneNumber from "@/components/input/InputPhoneNumber.vue";
 
 import {useStoreDeliveryAddressApi} from "@/repositories/delivery-address";
 
-import { ref } from "vue";
+import {ref, watch} from "vue";
 import { useToastStore } from "@/stores/toast";
 import { useRouter } from 'vue-router'
 import BoxGetCoordinates from "@/components/delivery_address/BoxGetCoordinates.vue";
 import InputLong from "@/components/input/InputLong.vue";
 import InputLat from "@/components/input/InputLat.vue";
 import {useIndexGetCoodinatesApi} from "@/repositories/get-coordinates";
+import ButtonLoadCoordinates from "@/components/button/ButtonLoadCoordinates.vue";
+import Footer from "@/components/home/Footer.vue";
 
 const router = useRouter();
 
@@ -97,30 +103,26 @@ const delivery_address = ref({
   street: '',
   ward: {
     code: '',
-    full_name: ''
   },
   district: {
     code: '',
-    full_name: ''
   },
   province: {
     code: '',
-    full_name: ''
   },
   long: '',
   lat: ''
 })
 
-function getCoordinates() {
+function loadCoordinates() {
   useIndexGetCoodinatesApi(delivery_address.value.street_number, delivery_address.value.street,
-      delivery_address.value.district.full_name, delivery_address.value.province.full_name)
+      delivery_address.value.district.code, delivery_address.value.province.code)
       .then((response) => {
+        console.log(response.data.results[0].position.lat, response.data.results[0].position.lon)
         delivery_address.value.lat = response.data.results[0].position.lat
         delivery_address.value.long = response.data.results[0].position.lon
       })
 }
-
-getCoordinates()
 
 async function submit() {
   useStoreDeliveryAddressApi(delivery_address.value.full_name, delivery_address.value.phone_number,

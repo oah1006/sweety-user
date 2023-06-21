@@ -88,6 +88,8 @@ export function useGetDeliveryAddressInformationApi() {
     const route = useRoute();
     const id = route.params.id
 
+    console.log(id)
+
     const config = {
         headers: {
             Authorization: `Bearer ${token}`,
@@ -148,4 +150,17 @@ export function useIndexWardApi(districtCode) {
 
     return axios
         .get('http://127.0.0.1:8000/public/wards/' + districtCode, config)
+}
+
+export function useChooseMyDeliveryAddressOrder(address_id) {
+    const token = $cookies.get('token')
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    }
+
+    return axios
+        .post('http://127.0.0.1:8000/public/delivery-address/choose-my-delivery-address/' + address_id, {}, config)
 }

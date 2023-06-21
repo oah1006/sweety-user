@@ -9,7 +9,7 @@ import {computed, watch} from "vue";
 
 const props = defineProps({
   modalSearch: String,
-  isLoadingPage: Boolean
+  isLoadingListProduct: Boolean,
 })
 
 const emits = defineEmits(['update:modalSearch', 'filter-data'])
@@ -25,7 +25,7 @@ function filterData() {
 }
 
 watch(search, () => {
-  props.isLoadingPage = true
+  props.isLoadingListProduct = true
 
   filterData()
 })

@@ -41,7 +41,6 @@ function submit() {
         router.push(`verify-otp?email=${email.value}`)
       })
       .catch((error) => {
-        console.log(error.response.data)
         errors.value = error.response.data
       })
 }

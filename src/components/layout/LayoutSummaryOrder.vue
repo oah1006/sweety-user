@@ -15,7 +15,8 @@
       </div>
       <div class="flex items-center justify-between my-2">
         <p>Áp dụng mã giảm giá:</p>
-        <p>- {{ props.coupon }}%</p>
+        <p v-if="props.coupon" class="text-cyan-500">- {{ props.coupon }}%</p>
+        <p v-else class="text-zinc-500">Không áp dụng mã giảm giá</p>
       </div>
       <div class="flex items-center justify-between pt-1 py-5 border-t border-orange-500">
         <p>Tổng:</p>

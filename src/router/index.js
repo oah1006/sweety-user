@@ -1,22 +1,31 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import Home from "@/views/home/Home.vue"
+
 import Login from "@/views/auth/Login.vue"
 import Register from "@/views/auth/Register.vue";
-import {useProfileStore} from "@/stores/getMyProfile";
 import Profile from "@/views/profile/Profile.vue";
-import DeliveryAddress from "@/views/delivery-address/DeliveryAddress.vue";
-import CreateDeliveryAddress from "@/views/delivery-address/CreateDeliveryAddress.vue";
-import UpdateDeliveryAddress from "@/views/delivery-address/UpdateDeliveryAddress.vue";
 import SendOtp from "@/views/auth/otp/SendOtp.vue";
 import VerifyOtp from "@/views/auth/otp/VerifyOtp.vue";
 import FogotPassword from "@/views/auth/FogotPassword.vue";
+
+import DeliveryAddress from "@/views/delivery-address/DeliveryAddress.vue";
+import CreateDeliveryAddress from "@/views/delivery-address/CreateDeliveryAddress.vue";
+import UpdateDeliveryAddress from "@/views/delivery-address/UpdateDeliveryAddress.vue";
+
 import Order from "@/views/order/Order.vue";
 import DetailOrder from "@/views/order/DetailOrder.vue";
-import ProcessStatusOrder from "@/components/ProcessStatusOrder.vue";
+
 import ListProduct from "@/views/product/ListProduct.vue";
-import Coupon from "@/views/coupon/Coupon.vue";
 import DetailProduct from "@/views/product/DetailProduct.vue";
+
+import Checkout from "@/views/checkout/Checkout.vue";
+
+import ListStore from "@/views/store/ListStore.vue";
+
+import {useProfileStore} from "@/stores/getMyProfile";
+import AboutUs from "@/views/AboutUs.vue";
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -104,41 +113,43 @@ const router = createRouter({
       }
     },
     {
-      path: '/coupon',
-      name: 'coupon',
-      component: Coupon,
-      meta: {
-        requiresAuth: true
-      }
-    },
-    {
       path: '/list-product',
       name: 'list-product',
       component: ListProduct,
-      meta: {
-        requiresAuth: true
-      }
     },
     {
-      path: '/detail-product',
+      path: '/detail-product/:id',
       name: 'detail-product',
       component: DetailProduct,
       meta: {
         requiresAuth: true
       }
     },
-
     {
-      path: '/process',
-      name: 'Process',
-      component: ProcessStatusOrder,
+      path: '/checkout',
+      name: 'checkout',
+      component: Checkout,
       meta: {
-        requiresAuth: true,
-        guest: true
+        requiresAuth: true
       }
     },
+    {
+      path: '/stores',
+      name: 'stores',
+      component: ListStore,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/about-us',
+      name: 'AboutUs',
+      component: AboutUs,
+      meta: {
+        requiresAuth: true
+      }
+    }
   ],
-  linkActiveClass: 'vue-active-link'
 })
 
 router.beforeEach(async(to, from, next) => {

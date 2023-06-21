@@ -1,5 +1,5 @@
 <template>
-  <div :class="`${props.padding} ${props.flex} ${props.border} ${props.margin}`" class="hidden">
+  <div :class="`${props.padding} ${props.flex} ${props.border} ${props.margin}`">
     <p :class="`${props.width}`">{{ props.name }}</p>
     <div class="w-full flex items-center justify-between">
       <div class="flex gap-10">
