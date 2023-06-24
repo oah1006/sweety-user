@@ -18,7 +18,7 @@ export function useIndexProductApi(page = 0 ,keywords = '', category_id = null, 
     }
 
     return axios
-        .get('http://127.0.0.1:8000/public/products?', config)
+        .get(process.env.VUE_APP_ENV_VARIABLE + '/public/products?', config)
 }
 
 export function useGetProductInformation() {
@@ -34,7 +34,7 @@ export function useGetProductInformation() {
     }
 
     return axios
-        .get('http://127.0.0.1:8000/public/products/' + id, config)
+        .get(process.env.VUE_APP_ENV_VARIABLE + '/public/products/' + id, config)
 }
 
 
@@ -50,7 +50,7 @@ export function useGetRelatedProduct(categoryId, id) {
     }
 
     return axios
-        .get('http://127.0.0.1:8000/public/products/index-related-product/' + categoryId + '/' + id, config)
+        .get(process.env.VUE_APP_ENV_VARIABLE + '/public/products/index-related-product/' + categoryId + '/' + id, config)
 }
 
 export function useGetBestSellerProduct() {
@@ -63,5 +63,5 @@ export function useGetBestSellerProduct() {
     }
 
     return axios
-        .get('http://127.0.0.1:8000/public/products/index-best-seller', config)
+        .get(process.env.VUE_APP_ENV_VARIABLE + '/public/products/index-best-seller', config)
 }

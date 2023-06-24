@@ -1,5 +1,5 @@
 <template>
-  <div class="z-60 relative overflow-hidden bg-[url('../../images/coffee-shop-4.jpg')] w-full flex items-center justify-center min-h-screen bg-no-repeat bg-contain bg-cover bg-right">
+  <div class="z-60 relative overflow-hidden bg-[url('./images/coffee-shop-4.jpg')] w-full flex items-center justify-center min-h-screen bg-no-repeat bg-contain bg-cover bg-right">
     <div class="bg-white w-1/3 z-50 px-4 py-4 shadow-2xl rounded-3xl my-4">
       <router-link :to="{ name: 'send-otp' }" class="underline text-orange-500">Quay lại</router-link>
       <div class="flex items-center justify-center">

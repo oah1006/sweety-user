@@ -19,7 +19,7 @@ export const useProfileStore = defineStore('useProfileStore', {
             }
 
             await axios
-                .get('http://127.0.0.1:8000/public/auth/profile', config)
+                .get(process.env.VUE_APP_ENV_VARIABLE + '/public/auth/profile', config)
                 .then((response) => {
                     this.profile = response.data.data
                 })

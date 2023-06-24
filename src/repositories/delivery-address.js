@@ -25,7 +25,7 @@ export function useStoreDeliveryAddressApi(full_name, phone_number, street_numbe
     }
 
     return axios
-        .post('http://127.0.0.1:8000/public/delivery-addresses', delivery_address, config)
+        .post(process.env.VUE_APP_ENV_VARIABLE + '/public/delivery-addresses', delivery_address, config)
 }
 
 export function useUpdateDeliveryAddressApi(name, phone_number, street_number, street, ward_code,
@@ -52,7 +52,7 @@ export function useUpdateDeliveryAddressApi(name, phone_number, street_number, s
     }
 
     return axios
-        .put('http://127.0.0.1:8000/public/delivery-addresses/' + id, delivery_address, config)
+        .put(process.env.VUE_APP_ENV_VARIABLE + '/public/delivery-addresses/' + id, delivery_address, config)
 }
 
 export function useIndexDeliveryAddressApi() {
@@ -65,7 +65,7 @@ export function useIndexDeliveryAddressApi() {
     }
 
     return axios
-        .get('http://127.0.0.1:8000/public/delivery-addresses', config)
+        .get(process.env.VUE_APP_ENV_VARIABLE + '/public/delivery-addresses', config)
 }
 
 export function useDeleteDeliveryAddressApi(id) {
@@ -79,7 +79,7 @@ export function useDeleteDeliveryAddressApi(id) {
     }
 
     return axios
-        .delete('http://127.0.0.1:8000/public/delivery-addresses/' + id, config)
+        .delete(process.env.VUE_APP_ENV_VARIABLE + '/public/delivery-addresses/' + id, config)
 }
 
 export function useGetDeliveryAddressInformationApi() {
@@ -97,7 +97,7 @@ export function useGetDeliveryAddressInformationApi() {
     }
 
     return axios
-        .get('http://127.0.0.1:8000/public/delivery-addresses/' + id, config)
+        .get(process.env.VUE_APP_ENV_VARIABLE + '/public/delivery-addresses/' + id, config)
 }
 
 export function useChangeIsDefaultDeliveryAddressApi(id) {
@@ -110,7 +110,7 @@ export function useChangeIsDefaultDeliveryAddressApi(id) {
     }
 
     return axios
-        .put('http://127.0.0.1:8000/public/delivery-addresses/change-is-default/' + id, {}, config)
+        .put(process.env.VUE_APP_ENV_VARIABLE + '/public/delivery-addresses/change-is-default/' + id, {}, config)
 }
 
 export function useIndexProvinceApi() {
@@ -123,7 +123,7 @@ export function useIndexProvinceApi() {
     }
 
     return axios
-        .get('http://127.0.0.1:8000/public/provinces', config)
+        .get(process.env.VUE_APP_ENV_VARIABLE + '/public/provinces', config)
 }
 
 export function useIndexDistrictApi(provinceCode) {
@@ -136,7 +136,7 @@ export function useIndexDistrictApi(provinceCode) {
     }
 
     return axios
-        .get('http://127.0.0.1:8000/public/districts/' + provinceCode, config)
+        .get(process.env.VUE_APP_ENV_VARIABLE + '/public/districts/' + provinceCode, config)
 }
 
 export function useIndexWardApi(districtCode) {
@@ -149,7 +149,7 @@ export function useIndexWardApi(districtCode) {
     }
 
     return axios
-        .get('http://127.0.0.1:8000/public/wards/' + districtCode, config)
+        .get(process.env.VUE_APP_ENV_VARIABLE + '/public/wards/' + districtCode, config)
 }
 
 export function useChooseMyDeliveryAddressOrder(address_id) {
@@ -162,5 +162,5 @@ export function useChooseMyDeliveryAddressOrder(address_id) {
     }
 
     return axios
-        .post('http://127.0.0.1:8000/public/delivery-address/choose-my-delivery-address/' + address_id, {}, config)
+        .post(process.env.VUE_APP_ENV_VARIABLE + '/public/delivery-address/choose-my-delivery-address/' + address_id, {}, config)
 }

@@ -10,7 +10,7 @@ export function useIndexCouponApi() {
     }
 
     return axios
-        .get('http://127.0.0.1:8000/public/coupons?', config)
+        .get(process.env.VUE_APP_ENV_VARIABLE + '/public/coupons?', config)
 }
 
 export function useApplyCouponApi(coupon_id) {
@@ -23,7 +23,7 @@ export function useApplyCouponApi(coupon_id) {
     }
 
     return axios
-        .post('http://127.0.0.1:8000/public/coupons/apply-coupon/' + coupon_id, {}, config)
+        .post(process.env.VUE_APP_ENV_VARIABLE + '/public/coupons/apply-coupon/' + coupon_id, {}, config)
 }
 
 export function useRemoveCouponApi() {
@@ -36,5 +36,5 @@ export function useRemoveCouponApi() {
     }
 
     return axios
-        .post('http://127.0.0.1:8000/public/coupons/remove-coupon', {}, config)
+        .post(process.env.VUE_APP_ENV_VARIABLE + '/public/coupons/remove-coupon', {}, config)
 }

@@ -15,7 +15,7 @@ export function useIndexOrderApi(page = null, status = '') {
     }
 
     return axios
-        .get('http://127.0.0.1:8000/public/orders?', config)
+        .get(process.env.VUE_APP_ENV_VARIABLE + '/public/orders?', config)
 }
 
 export function useDetailOrderApi(id) {
@@ -28,7 +28,7 @@ export function useDetailOrderApi(id) {
     }
 
     return axios
-        .get('http://127.0.0.1:8000/public/orders/' + id, config)
+        .get(process.env.VUE_APP_ENV_VARIABLE + '/public/orders/' + id, config)
 }
 
 export function useUpdateStatusCanceledOrderApi(id) {
@@ -41,7 +41,7 @@ export function useUpdateStatusCanceledOrderApi(id) {
     }
 
     return axios
-        .put('http://127.0.0.1:8000/public/orders/update-status-canceled/' + id, {}, config)
+        .put(process.env.VUE_APP_ENV_VARIABLE + '/public/orders/update-status-canceled/' + id, {}, config)
 }
 
 export function useStoreOrderApi() {
@@ -56,5 +56,5 @@ export function useStoreOrderApi() {
     }
 
     return axios
-        .post('http://127.0.0.1:8000/public/orders', {}, config)
+        .post(process.env.VUE_APP_ENV_VARIABLE + '/public/orders', {}, config)
 }

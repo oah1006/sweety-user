@@ -14,5 +14,5 @@ export function useIndexStoreApi(keywords = '', province_code = null) {
     }
 
     return axios
-        .get('http://127.0.0.1:8000/public/stores?', config)
+        .get(process.env.VUE_APP_ENV_VARIABLE + '/public/stores?', config)
 }

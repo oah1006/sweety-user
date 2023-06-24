@@ -10,5 +10,5 @@ export function useIndexToppingApi() {
     }
 
     return axios
-        .get('http://127.0.0.1:8000/public/toppings?', config)
+        .get(process.env.VUE_APP_ENV_VARIABLE + '/public/toppings?', config)
 }

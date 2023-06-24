@@ -10,5 +10,5 @@ export function useIndexCategoryApi() {
     }
 
     return axios
-        .get('http://127.0.0.1:8000/public/categories?', config)
+        .get(process.env.VUE_APP_ENV_VARIABLE + '/public/categories?', config)
 }

@@ -3,7 +3,7 @@
     <Header />
     <div class="mt-14 w-full relative">
       <div class="bg-gradient-to-r from-white via-orange-100 to-cyan-100">
-        <div class="z-20 bg-[length:80%] bg-[url('../../images/banner2.png')] bg-no-repeat bg-contain bg-cover bg-right w-full h-[580px]">
+        <div class="z-20 bg-[length:80%] bg-[url('./images/banner2.png')] bg-no-repeat bg-contain bg-cover bg-right w-full h-[580px]">
           <div class="pt-12 lg:ml-32 mx-16 text-zinc-700 text-4xl font-bold">
             <p>Trà sữa tươi ngon</p>
             <p class="lg:px-10">đủ để làm hài lòng mọi tâm hồn!</p>

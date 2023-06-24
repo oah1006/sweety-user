@@ -1,7 +1,7 @@
 <template>
   <div v-if="!isLoadingPage">
     <Header />
-    <div class="z-20 bg-[url('../../images/coffee-shop-6.jpg')] grayscale bg-cover bg-right w-full h-72 mt-20 flex items-center justify-center">
+    <div class="z-20 bg-[url('./images/coffee-shop-6.jpg')] grayscale bg-cover bg-right w-full h-72 mt-20 flex items-center justify-center">
       <p class="text-white text-5xl font-bold z-30">Chi nhánh cửa hàng</p>
     </div>
     <div class="flex px-20 my-10">

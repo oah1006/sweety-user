@@ -8,12 +8,12 @@ export async function useRegisterApi(customer) {
     }
 
     return axios
-        .post('http://127.0.0.1:8000/public/auth/register', customer, config)
+        .post(process.env.VUE_APP_ENV_VARIABLE + '/public/auth/register', customer, config)
 }
 
 export async function useLoginApi(customer) {
     return axios
-        .post('http://127.0.0.1:8000/public/auth/login', customer)
+        .post(process.env.VUE_APP_ENV_VARIABLE + '/public/auth/login', customer)
 }
 
 export async function useLogoutApi() {
@@ -27,7 +27,7 @@ export async function useLogoutApi() {
     }
 
     return axios
-        .post('http://127.0.0.1:8000/public/auth/logout', {}, config)
+        .post(process.env.VUE_APP_ENV_VARIABLE + '/public/auth/logout', {}, config)
 }
 
 export function useUpdateProfileApi(customer) {
@@ -41,7 +41,7 @@ export function useUpdateProfileApi(customer) {
     }
 
     return axios
-        .put('http://127.0.0.1:8000/public/auth/profile', customer, config)
+        .put(process.env.VUE_APP_ENV_VARIABLE + '/public/auth/profile', customer, config)
 }
 
 export function useForgotPasswordApi(formForgotPassword, tokenOtp) {
@@ -55,5 +55,5 @@ export function useForgotPasswordApi(formForgotPassword, tokenOtp) {
     }
 
     return axios
-        .post('http://127.0.0.1:8000/public/auth/forgot-password', formForgotPassword, config)
+        .post(process.env.VUE_APP_ENV_VARIABLE + '/public/auth/forgot-password', formForgotPassword, config)
 }

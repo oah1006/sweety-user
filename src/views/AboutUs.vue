@@ -2,7 +2,7 @@
   <div>
     <Header />
     <div>
-      <div class="z-20 bg-[url('../images/store-5.jpg')] bg-cover bg-right w-full h-72 mt-20 flex items-center justify-center">
+      <div class="z-20 bg-[url('./images/store-5.jpg')] bg-cover bg-right w-full h-72 mt-20 flex items-center justify-center">
         <p class="text-white text-5xl font-bold z-30">Về chúng tôi</p>
       </div>
       <div class="my-20">

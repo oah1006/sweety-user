@@ -16,7 +16,7 @@ export function useAddToCartApi(product_variant_id, cartItemOptions) {
     }
 
     return axios
-        .post('http://127.0.0.1:8000/public/carts', cart, config)
+        .post(process.env.VUE_APP_ENV_VARIABLE + '/public/carts', cart, config)
 }
 
 export function useIndexAddToCartApi() {
@@ -29,7 +29,7 @@ export function useIndexAddToCartApi() {
     }
 
     return axios
-        .get('http://127.0.0.1:8000/public/carts?', config)
+        .get(process.env.VUE_APP_ENV_VARIABLE + '/public/carts?', config)
 }
 
 export function useMinusCartItemApi(id) {
@@ -43,7 +43,7 @@ export function useMinusCartItemApi(id) {
     }
 
     return axios
-        .delete('http://127.0.0.1:8000/public/cart-items/' + id, config)
+        .delete(process.env.VUE_APP_ENV_VARIABLE + '/public/cart-items/' + id, config)
 }
 
 export function useAddCartItemApi(id) {
@@ -57,5 +57,5 @@ export function useAddCartItemApi(id) {
     }
 
     return axios
-        .put('http://127.0.0.1:8000/public/cart-items/' + id, {}, config)
+        .put(process.env.VUE_APP_ENV_VARIABLE + '/public/cart-items/' + id, {}, config)
 }
