@@ -1,19 +1,20 @@
 <template>
-  <Header class=""></Header>
+  <Header></Header>
   <LayoutProduct v-if="!isLoadingPage" class="mt-14">
     <template #input-search>
       <InputSearch :isLoadingListProduct="isLoadingListProduct" @filter-data="filterData" v-model:modalSearch="search"></InputSearch>
     </template>
     <template #sidebar-menu>
-      <div class="mt-6 text-lg text-zinc-500">
+      <div @click="showCategory" class="block lg:hidden border border-zinc-400 px-2 py-2 w-44 rounded-lg mt-4 cursor-pointer">Danh mục sản phẩm</div>
+      <div v-if="isPopupListCategory" class="mt-6 text-lg text-zinc-500 grid grid-cols-3 lg:grid-cols-none">
         <p @click="reset" :class="[isCategory == '' ? 'text-orange-500 !border-orange-500 underline' : '']" class="cursor-pointer">Tất cả</p>
         <div v-for="category in categories" :key="category.id">
-          <p @click="filterData(category.id, currentSort.price_low_to_high, currentSort.price_high_to_low)" :class="[isCategory == category.id ? 'text-orange-500 !border-orange-500 underline' : '']" class="hover:text-orange-500 cursor-pointer mt-3">{{ category.name }}</p>
+          <p @click="filterData(category.id, currentSort.price_low_to_high, currentSort.price_high_to_low)" :class="[isCategory == category.id ? 'text-orange-500 !border-orange-500 underline' : '']" class="hover:text-orange-500 cursor-pointer lg:mt-3 mt-0">{{ category.name }}</p>
         </div>
       </div>
     </template>
     <template #filter>
-      <div class="w-1/3 grow relative select-none">
+      <div class="w-1/3 grow relative select-none lg:mt-0 mt-3 md:mt-0 sm:mt-0">
         <div @click="showPopup" class="flex items-center flex-none cursor-pointer select-none">
           <div class="flex items-center flex-none ml-auto gap-4 border border-zinc-400 px-4 py-1 rounded-lg">
             <p class="text-md">{{ label }}</p>
@@ -30,8 +31,8 @@
       </div>
     </template>
     <template #list-products>
-      <div class="grid grid-cols-3 gap-6 mt-6" v-if="!isLoadingListProduct">
-        <div v-for="product in products" :key="product.id">
+      <div class="sm:grid sm:grid-cols-2 sm:gap-3 md:grid md:grid-cols-2 md:gap-6 lg:grid lg:grid-cols-3 lg:gap-6 mt-6 flex flex-col" v-if="!isLoadingListProduct">
+        <div v-for="product in products" :key="product.id" class="mx-auto">
           <LayoutListProduct :id="product.id" :product="product" :nameProduct="product.name" :price="product.price" :url="product.attachment[0]?.url">
 
           </LayoutListProduct>
@@ -54,12 +55,13 @@ import Header from "@/components/home/Header.vue";
 import LayoutListProduct from "@/components/layout/LayoutListProduct.vue";
 import LoadingPage from "@/components/LoadingPage.vue";
 import LoadingListProduct from "@/components/LoadingListProduct.vue";
-
-import {useIndexProductApi} from "@/repositories/product";
-import {ref, watch} from "vue";
-import { useIndexCategoryApi } from "@/repositories/category";
 import Footer from "@/components/home/Footer.vue";
 import Pagination from "@/components/Pagination.vue";
+
+import {useIndexProductApi} from "@/repositories/product";
+import {onMounted, ref, watch} from "vue";
+import { useIndexCategoryApi } from "@/repositories/category";
+
 
 const categories = ref({})
 
@@ -75,6 +77,7 @@ const debounce = ref(0)
 const isCategory = ref('')
 
 const isPopup = ref(false)
+const isPopupListCategory = ref(false)
 
 const label = ref('Bộ lọc')
 
@@ -93,6 +96,10 @@ const pagination = ref({
 
 function showPopup() {
   isPopup.value = !isPopup.value
+}
+
+function showCategory() {
+  isPopupListCategory.value = !isPopupListCategory.value
 }
 
 function getDataCategory() {

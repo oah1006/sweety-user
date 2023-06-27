@@ -1,7 +1,7 @@
 <template>
   <form>
     <p class="pt-6 text-3xl font-medium">Thông tin cá nhân</p>
-    <p class="text-md text-zinc-500">Dưới đây là thông tin của bạn! Nếu bạn cần cập nhật bất kỳ thông tin nào, bạn có thể chỉnh sửa và nhấn nút cập nhật ngay nhé! Sweety xin chân thành cám ơn quý khách</p>
+    <p class="lg:text-md text-sm text-zinc-500">Dưới đây là thông tin của bạn! Nếu bạn cần cập nhật bất kỳ thông tin nào, bạn có thể chỉnh sửa và nhấn nút cập nhật ngay nhé! Sweety xin chân thành cám ơn quý khách</p>
     <div class="py-6">
       <slot name="box-input"></slot>
       <slot name="gender"></slot>

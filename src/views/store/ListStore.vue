@@ -4,19 +4,19 @@
     <div class="z-20 bg-[url('./images/coffee-shop-6.jpg')] grayscale bg-cover bg-right w-full h-72 mt-20 flex items-center justify-center">
       <p class="text-white text-5xl font-bold z-30">Chi nhánh cửa hàng</p>
     </div>
-    <div class="flex px-20 my-10">
-      <div class="w-1/4">
-        <p class="text-lg font-bold text-zinc-800">Theo khu vực</p>
-        <div class="mt-4">
-          <p @click="filterData(79)" :class="[provinceId === 79 ? '!text-orange-500' : '']" class="text-zinc-600 cursor-pointer">Hồ Chí Minh</p>
-          <p @click="filterData(1)" :class="[provinceId === 1 ? '!text-orange-500' : '']" class="text-zinc-600 mt-2 cursor-pointer">Hà Nội</p>
+    <div class="lg:flex lg:px-20 px-6 my-10">
+      <div class="lg:w-1/4">
+        <p class="lg:text-lg text-2xl font-bold text-zinc-800">Theo khu vực</p>
+        <div class="lg:mt-4 mt-2 flex items-center gap-4 lg:flex-col lg:items-start lg:gap-0">
+          <p @click="filterData(79)" :class="[provinceId === 79 ? '!text-orange-500' : '']" class="text-zinc-600 text-lg lg:text-base cursor-pointer">Hồ Chí Minh</p>
+          <p @click="filterData(1)" :class="[provinceId === 1 ? '!text-orange-500' : '']" class="text-zinc-600 text-lg lg:text-base lg:mt-2 cursor-pointer">Hà Nội</p>
         </div>
       </div>
-      <div v-if="!isLoadingListProduct" class="grow w-3/4">
-        <p class="text-lg font-bold text-zinc-800">Các cửa hàng</p>
+      <div v-if="!isLoadingListProduct" class="grow lg:w-3/4 lg:mt-0 mt-4">
+        <p class="lg:text-lg text-2xl font-bold text-zinc-800">Các cửa hàng</p>
         <InputSearch class="mt-4" :isLoadingListProduct="isLoadingListProduct" @filter-data="filterData" v-model:modalSearch="search" />
-        <div class="grid grid-cols-2 gap-10 mt-5">
-          <div v-for="store in stores" :key="store">
+        <div class="lg:grid lg:grid-cols-2 lg:gap-10 mt-5">
+          <div v-for="store in stores" :key="store" class="lg:mt-0 mt-10">
             <SwiperMultipleStore class="h-72 rounded-xl" :attachments="store.attachment"></SwiperMultipleStore>
             <p class="font-bold text-lg border-b py-2 border-zinc-300">{{ store.store_name }}</p>
             <p class="mt-2 text-zinc-700">{{ store.address?.street_number }} {{ store.address?.street }}, {{ store.address?.ward.full_name }}, {{ store.address?.district.full_name }}, {{ store.address?.province.full_name }}</p>

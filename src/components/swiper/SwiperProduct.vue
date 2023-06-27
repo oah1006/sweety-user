@@ -1,6 +1,6 @@
 <template>
   <swiper
-      :slidesPerView="4"
+      :slidesPerView="slidesPerView"
       :spaceBetween="30"
       :autoplay="{
         delay: 2500,
@@ -16,7 +16,12 @@
   >
     <swiper-slide v-for="product in bestSellerProduct" :key="product.id">
       <div>
-        <img :src="product.attachment[0]?.url" class="h-full w-full object-cover rounded-2xl">
+        <img :src="product.attachment[0]?.url" :class="{
+            'h-full': slidesPerView === 1,
+            'w-full': slidesPerView === 1,
+            'object-cover': slidesPerView === 1,
+            'rounded-2xl': slidesPerView === 1,
+          }">
         <p class="text-zinc-600 text-2xl font-medium mt-4">{{ product.name }}</p>
         <p class="text-red-600 font-bold">{{ formatPrice(product.price) }} đồng</p>
       </div>
@@ -50,13 +55,25 @@ export default {
   setup() {
     return {
       modules: [Autoplay, Pagination],
+      slidesPerView: 4,
     };
+  },
+  mounted() {
+    this.updateSlidesPerView(); // Initial call to set slidesPerView
   },
   methods: {
     formatPrice(price) {
       return price.toLocaleString("vi-VN");
-    }
-  }
+    },
+    updateSlidesPerView() {
+      // Update slidesPerView based on screen size
+      if (window.innerWidth < 768) {
+        this.slidesPerView = 1;
+      } else {
+        this.slidesPerView = 4;
+      }
+    },
+  },
 };
 
 

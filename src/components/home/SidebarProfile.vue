@@ -2,6 +2,7 @@
   <div class="flex gap-5 py-6">
     <div>
       <div class="px-2">
+
         <p class="font-medium text-lg">{{ profileStore.profile.profile?.full_name }}</p>
         <p class="text-zinc-400 text-md">{{ profileStore.profile.email }}</p>
       </div>

@@ -199,36 +199,42 @@ function showDeliveryAddressModal() {
 function getIndexAddToCart() {
   useIndexAddToCartApi()
       .then((response) => {
-        productCarts.value = response.data.data
+        if (response.data.data) {
+          productCarts.value = response.data.data
 
-        console.log(productCarts.value)
+          console.log(productCarts.value)
 
-        if (response.data.data.address) {
-          deliveryAddressDefault.value = response.data.data.address
+          if (response.data.data.address) {
+            deliveryAddressDefault.value = response.data.data.address
+          } else {
+            deliveryAddressDefault.value = ''
+          }
+
+          if (response.data.data.store) {
+            addressStore.value = response.data.data.store
+          } else {
+            addressStore.value = ''
+          }
+
+          const totalObject = productCarts.value.cart_items.map(item => {
+            const optionsPrice = item.cart_item_options.reduce((acc, option) => acc + (option.topping.price * option.qty), 0);
+            const totalPrice = optionsPrice + item.product_variant.unit_price;
+            return {...item, totalPrice}
+          });
+
+          productCarts.value.cart_items = totalObject
+
+          if (productCarts.value.cart_items.length == 0) {
+            useToastStore().success('Chưa có sản phẩm nào trong giỏ hàng của bạn', 3000)
+            router.push({ name: 'list-product' })
+          }
+
+          isLoadingPage.value = false
         } else {
-          deliveryAddressDefault.value = ''
+          router.push({
+            name: 'list-product'
+          })
         }
-
-        if (response.data.data.store) {
-          addressStore.value = response.data.data.store
-        } else {
-          addressStore.value = ''
-        }
-
-        const totalObject = productCarts.value.cart_items.map(item => {
-          const optionsPrice = item.cart_item_options.reduce((acc, option) => acc + (option.topping.price * option.qty), 0);
-          const totalPrice = optionsPrice + item.product_variant.unit_price;
-          return {...item, totalPrice}
-        });
-
-        productCarts.value.cart_items = totalObject
-
-        if (productCarts.value.cart_items.length == 0) {
-          useToastStore().success('Chưa có sản phẩm nào trong giỏ hàng của bạn', 3000)
-          router.push({ name: 'list-product' })
-        }
-
-        isLoadingPage.value = false
       })
 }
 

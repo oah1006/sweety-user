@@ -6,8 +6,8 @@
         <p class="text-white text-5xl font-bold z-30">Về chúng tôi</p>
       </div>
       <div class="my-20">
-        <div class="flex items-center px-20">
-          <div class="w-1/2">
+        <div class="lg:flex flex flex-col flex-col-reverse lg:items-center px-20">
+          <div class="lg:w-1/2">
             <p class="text-5xl text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-black">Câu chuyện về thương hiệu</p>
             <p class="mt-5 text-zinc-600 text-justify">Chủ cửa hàng trà sữa đặt tên cho tiệm mình là "Sweety" -
               một từ tiếng Anh mang ý nghĩa ngọt ngào và đáng yêu. Ý nghĩa của cái tên muốn mọi người cảm nhận được
@@ -20,17 +20,17 @@
               sữa tươi và các thành phần tự nhiên tạo ra những ly trà sữa thơm ngon và mát lạnh.
             </p>
           </div>
-          <div class="ml-44">
+          <div class="lg:ml-44 ml-20 mb-10 lg:mb-0">
             <div class="w-96 h-96 flex items-center rounded-full bg-gradient-to-r from-orange-400 to-red-700">
               <img src="../images/logo-1.png" class="mx-auto w-56 h-56" />
             </div>
           </div>
         </div>
-        <div class="flex items-center mt-20 px-20 gap-10">
-          <div class="w-1/2 grow flex">
-            <img src="../images/store-1.jpg" class="rounded-2xl" />
+        <div class="lg:flex flex flex-col items-center mt-20 px-20 gap-10">
+          <div class="lg:w-1/2 grow">
+            <img src="../images/store-1.jpg" class="rounded-2xl w-full h-full" />
           </div>
-          <div class="w-1/2">
+          <div class="lg:w-1/2">
             <p class="text-5xl text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-black">Trà sữa Sweety</p>
             <p class="mt-5 text-zinc-600 text-justify">Thương hiệu Sweety chính thức đưa vào hoạt động từ ngày 11/10/2021.
               Trải qua hơn nhiều năm hoạt động, trà sữa Sweety, đã đưa thương hiệu phát triển nhanh chóng và trở thành một
@@ -38,9 +38,6 @@
               trà uy tín chất lượng với nguồn gốc xuất xứ rõ ràng.</p>
           </div>
         </div>
-      </div>
-      <div>
-
       </div>
     </div>
     <Footer />

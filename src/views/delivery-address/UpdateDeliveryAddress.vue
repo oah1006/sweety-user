@@ -11,7 +11,7 @@
             <template #address>
               <BoxInputInformationCustomer name="Họ và tên" namePhoneNumber="Số điện thoại" border="border-b border-gray-100 border-solid" padding="py-3">
                 <template #input-name>
-                  <InputName v-model:modelFullName="delivery_address.full_name"></InputName>
+                  <InputName v-model:modelFullName="delivery_address.name"></InputName>
                 </template>
                 <template #input-phone-number>
                   <InputPhoneNumber v-model:modelPhoneNumber="delivery_address.phone_number"></InputPhoneNumber>
@@ -45,11 +45,14 @@
             </template>
             <template #get-coordinates>
               <BoxGetCoordinates name="Tính tọa độ" padding="py-3">
+                <template #input-lat>
+                  <InputLat placeholder="Vĩ độ" :placeholder="delivery_address.lat" v-model:modelLat="delivery_address.lat"/>
+                </template>
                 <template #input-long>
                   <InputLong placeholder="Kinh độ" :placeholder="delivery_address.long" v-model:modelLong="delivery_address.long" />
                 </template>
-                <template #input-lat>
-                  <InputLat placeholder="Vĩ độ" :placeholder="delivery_address.lat" v-model:modelLat="delivery_address.lat"/>
+                <template #button-coordinates>
+                  <ButtonLoadCoordinates @load-coordinates="loadCoordinates" />
                 </template>
               </BoxGetCoordinates>
             </template>
@@ -88,6 +91,7 @@ import {useRoute, useRouter} from "vue-router";
 import {useIndexGetCoodinatesApi} from "@/repositories/get-coordinates";
 import {useToastStore} from "@/stores/toast";
 import Footer from "@/components/home/Footer.vue";
+import ButtonLoadCoordinates from "@/components/button/ButtonLoadCoordinates.vue";
 
 const router = useRouter();
 const route = useRoute();
@@ -95,7 +99,7 @@ const route = useRoute();
 const isLoadingPage = ref(true)
 
 const delivery_address = ref({
-  full_name: '',
+  name: '',
   phone_number: '',
   street_number: '',
   street: '',
@@ -115,21 +119,19 @@ const delivery_address = ref({
   lat: ''
 })
 
-function getCoordinates() {
+function loadCoordinates() {
   useIndexGetCoodinatesApi(delivery_address.value.street_number, delivery_address.value.street,
-      delivery_address.value.district.full_name, delivery_address.value.province.full_name)
+      delivery_address.value.district.code, delivery_address.value.province.code)
       .then((response) => {
         delivery_address.value.lat = response.data.results[0].position.lat
         delivery_address.value.long = response.data.results[0].position.lon
       })
 }
 
-getCoordinates()
-
 const id = route.params.id
 
 function submit() {
-  useUpdateDeliveryAddressApi(delivery_address.value.full_name, delivery_address.value.phone_number,
+  useUpdateDeliveryAddressApi(delivery_address.value.name, delivery_address.value.phone_number,
       delivery_address.value.street_number, delivery_address.value.street, delivery_address.value.ward.code,
       delivery_address.value.district.code, delivery_address.value.province.code,
       delivery_address.value.long, delivery_address.value.lat, id)
@@ -142,7 +144,7 @@ function submit() {
 function getDeliveryAddressInformationApi() {
   useGetDeliveryAddressInformationApi()
       .then((response) => {
-        delivery_address.value.full_name = response.data.data.name
+        delivery_address.value.name = response.data.data.name
         delivery_address.value.phone_number = response.data.data.phone_number
 
         delivery_address.value.street_number = response.data.data.street_number
