@@ -1,12 +1,12 @@
 <template>
   <div class="py-3 flex items-center justify-between">
     <div class="flex items-center gap-4">
-      <img src="../../images/product-1.jpg" class="w-24 h-24 object-cover" />
+      <img src="../../images/product-1.jpg" class="lg:w-24 lg:h-24 w-12 h-12 object-cover" />
       <div>
-        <p class="text-lg font-medium">{{ props.nameProduct }}</p>
-        <div class="flex items-center gap-6">
-          <p class="text-zinc-500">Size: {{ props.nameSizeProduct }}</p>
-          <p class="text-zinc-500">Giá tiền: {{ formatPrice(props.unitPriceSizeProduct) }} đồng</p>
+        <p class="lg:text-lg text-sm font-medium">{{ props.nameProduct }}</p>
+        <div class="lg:flex lg:items-center gap-6">
+          <p class="text-zinc-500 text-sm">Size: {{ props.nameSizeProduct }}</p>
+          <p class="text-zinc-500 text-sm">Giá tiền: {{ formatPrice(props.unitPriceSizeProduct) }} đồng</p>
         </div>
         <div v-for="item_topping in props.item.order_item_options">
           <p class="text-sm text-zinc-500">{{ item_topping.topping?.name }} x {{ item_topping.qty }}</p>

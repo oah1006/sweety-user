@@ -1,6 +1,6 @@
 <template>
-  <div class="mt-28 flex items-center gap-6">
-    <div class="border border-cyan-300 px-3 py-5 rounded-lg shadow-lg w-1/2 h-72">
+  <div class="mt-28 lg:flex lg:items-center lg:gap-6">
+    <div class="border border-cyan-300 px-3 py-5 rounded-lg shadow-lg lg:w-1/2 h-72">
       <p class="text-xl text-cyan-500 font-medium border-b border-cyan-500">Địa chỉ nhận hàng</p>
       <div class="mt-3">
         <p class="text-zinc-700">Họ và tên: <span class="text-orange-700 font-bold">{{ props.name }}</span></p>
@@ -9,7 +9,7 @@
         </span></p>
       </div>
     </div>
-    <div class="border border-cyan-300 px-3 py-5 rounded-lg shadow-lg w-1/2 h-72">
+    <div class="border border-cyan-300 px-3 py-5 rounded-lg shadow-lg lg:w-1/2 h-72 mt-4 lg:mt-0">
       <p class="text-xl text-cyan-500 font-medium border-b border-cyan-500">Thông tin nhân viên vận chuyển</p>
       <div class="mt-3">
         <div v-if="props.nameDeliveryStaff" class="flex flex-col items-center justify-center px-10 py-2">

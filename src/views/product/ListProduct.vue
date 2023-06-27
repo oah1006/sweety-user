@@ -5,13 +5,16 @@
       <InputSearch :isLoadingListProduct="isLoadingListProduct" @filter-data="filterData" v-model:modalSearch="search"></InputSearch>
     </template>
     <template #sidebar-menu>
-      <div @click="showCategory" class="block lg:hidden border border-zinc-400 px-2 py-2 w-44 rounded-lg mt-4 cursor-pointer">Danh mục sản phẩm</div>
-      <div v-if="isPopupListCategory" class="mt-6 text-lg text-zinc-500 grid grid-cols-3 lg:grid-cols-none">
-        <p @click="reset" :class="[isCategory == '' ? 'text-orange-500 !border-orange-500 underline' : '']" class="cursor-pointer">Tất cả</p>
-        <div v-for="category in categories" :key="category.id">
-          <p @click="filterData(category.id, currentSort.price_low_to_high, currentSort.price_high_to_low)" :class="[isCategory == category.id ? 'text-orange-500 !border-orange-500 underline' : '']" class="hover:text-orange-500 cursor-pointer lg:mt-3 mt-0">{{ category.name }}</p>
+      <div class="relative group z-10">
+        <p class="block lg:hidden border border-zinc-400 px-2 py-2 w-44 rounded-lg mt-4 cursor-pointer">Danh mục sản phẩm</p>
+        <div class="hidden lg:block group-hover:grid border border-zinc-300 lg:border-none px-4 lg:px-0 py-2 lg:py-0 mt-6 text-lg text-zinc-500 grid-cols-2 lg:grid-cols-none rounded-lg">
+          <p @click="reset" :class="[isCategory == '' ? 'text-orange-500 !border-orange-500 underline' : '']" class="cursor-pointer">Tất cả</p>
+          <div v-for="category in categories" :key="category.id">
+            <p @click="filterData(category.id, currentSort.price_low_to_high, currentSort.price_high_to_low)" :class="[isCategory == category.id ? 'text-orange-500 !border-orange-500 underline' : '']" class="hover:text-orange-500 cursor-pointer lg:mt-3 mt-0">{{ category.name }}</p>
+          </div>
         </div>
       </div>
+
     </template>
     <template #filter>
       <div class="w-1/3 grow relative select-none lg:mt-0 mt-3 md:mt-0 sm:mt-0">
@@ -23,7 +26,7 @@
             </svg>
           </div>
         </div>
-        <div v-if="isPopup" class="bg-white border border-zinc-400 absolute top-10 right-0">
+        <div v-if="isPopup" class="bg-white w-56 lg:w-full border border-zinc-400 absolute top-10 lg:right-10 z-50">
           <p @click="filterData(null, '', '')" class="hover:bg-orange-50 px-6 py-3 text-md cursor-pointer font-medium text-zinc-600">Không</p>
           <p @click="filterData(isCategory, 'price_low_to_high')" class="hover:bg-orange-50 px-6 py-3 text-md cursor-pointer font-medium text-zinc-600">Giá từ thấp đến cao</p>
           <p @click="filterData(isCategory, '', 'price_high_to_low')" class="hover:bg-orange-50 px-6 py-3 text-md cursor-pointer font-medium text-zinc-600">Giá từ cao đến thấp</p>

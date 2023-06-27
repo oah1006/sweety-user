@@ -1,6 +1,6 @@
 <template>
-  <div class="mt-10">
-    <div class="mx-auto flex items-center">
+  <div class="mt-10 flex items-center lg:flex-none">
+    <div class="mx-auto lg:flex lg:items-center">
       <div class="relative">
         <span v-if="props.orderTrackings?.length == 1" class="flex absolute h-4 w-4 top-0 right-2">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-600 opacity-75"></span>
@@ -16,8 +16,8 @@
           <p class="text-sm text-zinc-500 text-center">04/04/2023 12:00</p>
         </div>
       </div>
-      <div class="border-b border-zinc-300 w-24"></div>
-      <div class="relative">
+      <div class="border-b border-zinc-300 w-24 hidden lg:block"></div>
+      <div class="relative mt-20 lg:mt-0">
         <span v-if="props.orderTrackings?.length == 2 || props.orderTrackings?.length == 3" class="flex absolute h-4 w-4 top-0 right-2">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-600 opacity-75"></span>
             <span class="relative inline-flex rounded-full h-4 w-4 bg-cyan-600"></span>
@@ -33,8 +33,8 @@
           <p class="text-sm text-zinc-500 text-center">04/04/2023 12:00</p>
         </div>
       </div>
-      <div class="border-b border-zinc-300 w-24"></div>
-      <div class="relative">
+      <div class="border-b border-zinc-300 w-24 hidden lg:block"></div>
+      <div class="relative mt-20 lg:mt-0">
         <span v-if="props.orderTrackings?.length == 4" class="flex absolute h-4 w-4 top-0 right-2">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-600 opacity-75"></span>
             <span class="relative inline-flex rounded-full h-4 w-4 bg-cyan-600"></span>
@@ -50,8 +50,8 @@
           <p class="text-sm text-zinc-500 text-center">04/04/2023 12:00</p>
         </div>
       </div>
-      <div class="border-b border-zinc-300 w-24"></div>
-      <div class="relative">
+      <div class="border-b border-zinc-300 w-24 hidden lg:block"></div>
+      <div class="relative mt-20 lg:mt-0">
         <span v-if="props.orderTrackings?.length == 5" class="flex absolute h-4 w-4 top-0 right-2">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-600 opacity-75"></span>
             <span class="relative inline-flex rounded-full h-4 w-4 bg-cyan-600"></span>
@@ -69,8 +69,8 @@
           <p class="text-sm text-zinc-500 text-center">04/04/2023 12:00</p>
         </div>
       </div>
-      <div class="border-b border-zinc-300 w-24"></div>
-      <div class="relative">
+      <div class="border-b border-zinc-300 w-24 hidden lg:block"></div>
+      <div class="relative mt-20 lg:mt-0">
         <span v-if="props.orderTrackings?.length == 6" class="flex absolute h-4 w-4 top-0 right-2">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-600 opacity-75"></span>
             <span class="relative inline-flex rounded-full h-4 w-4 bg-cyan-600"></span>

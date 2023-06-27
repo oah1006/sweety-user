@@ -1,5 +1,5 @@
 <template>
-  <div  v-if="!isLoadingPage">
+  <div v-if="!isLoadingPage">
     <Header />
     <LayoutProfile>
       <template #sidebar>
@@ -26,9 +26,9 @@
         </LayoutDeliveryAddress>
       </template>
     </LayoutProfile>
-    <Footer />
   </div>
   <LoadingPage v-else />
+  <Footer />
 </template>
 
 <script setup>

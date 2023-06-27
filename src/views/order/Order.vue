@@ -9,12 +9,12 @@
         <LayoutOrder>
           <template #navbar-status-order>
             <div class="mt-10">
-              <ul class="flex items-center font-medium text-md text-zinc-600">
-                <li @click="getData" :class="[isActiveClass == 'all' ? 'text-orange-500 !border-orange-500' : '']" class="border-b border-zinc-300 px-8 py-3 cursor-pointer">Tất cả</li>
-                <li @click="filterStatusProcessing" :class="[isActiveClass == 'processing' ? 'text-orange-500 !border-orange-500' : '']" class="py-3 px-8 cursor-pointer border-b border-zinc-300">Đang thực hiện</li>
-                <li @click="filterStatusDelivering" :class="[isActiveClass == 'delivering' ? 'text-orange-500 !border-orange-500' : '']" class="border-b cursor-pointer border-zinc-300 px-8 py-3 cursor-pointer">Đang vận chuyển</li>
-                <li @click="filterStatusSucceed" :class="[isActiveClass == 'succeed' ? 'text-orange-500 !border-orange-500' : '']" class="border-b cursor-pointer border-zinc-300 px-8 py-3">Đã hoàn tất</li>
-                <li @click="filterStatusFailed" :class="[isActiveClass == 'failed' ? 'text-orange-500 !border-orange-500' : '']" class="border-b cursor-pointer border-zinc-300 px-8 py-3">Đã hủy</li>
+              <ul class="flex items-center font-medium text-zinc-600">
+                <li @click="getData" :class="[isActiveClass == 'all' ? 'text-orange-500 !border-orange-500' : '']" class="border-b border-zinc-300 lg:px-8 px-2 py-3 cursor-pointer text-sm">Tất cả</li>
+                <li @click="filterStatusProcessing" :class="[isActiveClass == 'processing' ? 'text-orange-500 !border-orange-500' : '']" class="py-3 lg:px-8 px-2 cursor-pointer border-b border-zinc-300 text-sm">Đang thực hiện</li>
+                <li @click="filterStatusDelivering" :class="[isActiveClass == 'delivering' ? 'text-orange-500 !border-orange-500' : '']" class="border-b cursor-pointer border-zinc-300 lg:px-8 px-2 py-3 cursor-pointer text-sm">Đang vận chuyển</li>
+                <li @click="filterStatusSucceed" :class="[isActiveClass == 'succeed' ? 'text-orange-500 !border-orange-500' : '']" class="border-b cursor-pointer border-zinc-300 lg:px-8 px-2 py-3 text-sm">Đã hoàn tất</li>
+                <li @click="filterStatusFailed" :class="[isActiveClass == 'failed' ? 'text-orange-500 !border-orange-500' : '']" class="border-b cursor-pointer border-zinc-300 lg:px-8 px-2 py-3 text-sm">Đã hủy</li>
               </ul>
             </div>
           </template>

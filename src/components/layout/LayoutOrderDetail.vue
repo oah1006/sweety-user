@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="flex pt-6 items-center">
+    <div class="lg:flex pt-6 items-center">
       <p class="text-3xl font-medium">Chi tiết đơn hàng</p>
-      <div class="flex gap-4 ml-auto items-center">
+      <div class="flex gap-4 ml-auto items-center lg:mt-0 mt-2">
         <div>
           <p>Mã đơn hàng: <span class="text-red-500 font-bold">{{ props.code }}</span></p>
         </div>

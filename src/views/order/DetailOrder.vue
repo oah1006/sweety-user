@@ -36,10 +36,9 @@
         </LayoutOrderDetail>
       </template>
     </LayoutProfile>
-
-    <Footer />
   </div>
   <LoadingPage v-else />
+  <Footer />
 </template>
 
 <script setup>

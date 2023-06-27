@@ -19,12 +19,12 @@
             <span class="cursor-pointer text-zinc-700 text-lg hover:text-orange-600"> Chào {{ profileStore.profile.profile?.full_name }}</span>
           </div>
           <div v-if="isPopupProfile" class="absolute w-64 py-3 bg-white rounded-lg shadow-lg shadow-orange-400/50 top-14 right-36 px-4">
-            <router-link :to="{ name: 'profile' }" class="flex items-center gap-2 hover:bg-zinc-50 hover:text-orange-500 hover:rounded-lg px-2 py-3 cursor-pointer">
+            <a @click="redirectProfile" class="flex items-center gap-2 hover:bg-zinc-50 hover:text-orange-500 hover:rounded-lg px-2 py-3 cursor-pointer">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
               <p class="font-medium text-lg">Thông tin cá nhân</p>
-            </router-link>
+            </a>
             <a @click="redirectDeliveryAddress" class="flex items-center gap-2 hover:bg-zinc-50 hover:text-orange-500 hover:rounded-lg px-2 py-3 cursor-pointer">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -75,9 +75,8 @@
             <p @click="redirectListProduct" class="px-10 py-3 text-2xl font-medium hover:bg-orange-50">
               Trà sữa
             </p>
-            <p class="px-10 py-3 text-2xl font-medium hover:bg-orange-50">Chúng tôi</p>
-            <p class="px-10 py-3 text-2xl font-medium hover:bg-orange-50">Liên hệ</p>
-            <p class="px-10 py-3 text-2xl font-medium hover:bg-orange-50">Chi nhánh cửa hàng</p>
+            <p @click="redirectAboutUs" class="px-10 py-3 text-2xl font-medium hover:bg-orange-50">Chúng tôi</p>
+            <p @click="redirectStore" class="px-10 py-3 text-2xl font-medium hover:bg-orange-50">Chi nhánh</p>
           </div>
         </div>
       </div>
@@ -104,7 +103,6 @@ const profileStore = useProfileStore()
 
 const isPopupProfile = ref(false)
 const isPopupHeader = ref(false)
-const isPopupCart = ref(false)
 
 let isModalRequireLogin = ref(false)
 
@@ -116,9 +114,7 @@ function showPopupHeader() {
   isPopupHeader.value = !isPopupHeader.value
 }
 
-function showPopupCart() {
-  isPopupCart.value = !isPopupCart.value
-}
+
 
 function redirectHome() {
   router.push({
@@ -143,6 +139,19 @@ function redirectListProduct() {
   })
 }
 
+function redirectAboutUs() {
+  router.push({
+    name: 'AboutUs'
+  })
+}
+
+function redirectStore() {
+  router.push({
+    name: 'stores'
+  })
+}
+
+
 function redirectCheckout() {
   if (token && productCarts) {
     router.push({
@@ -153,6 +162,12 @@ function redirectCheckout() {
   }
 
 
+}
+
+function redirectProfile() {
+  router.push({
+    name: 'profile'
+  })
 }
 
 function redirectDeliveryAddress() {
