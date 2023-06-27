@@ -1,40 +1,42 @@
 <template>
-  <div v-if="!isLoadingPage" class="h-screen">
-    <Header />
-    <LayoutProfile>
-      <template #sidebar>
-        <SidebarProfile />
-      </template>
-      <template #information>
-        <LayoutOrder>
-          <template #navbar-status-order>
-            <div class="mt-10">
-              <ul class="flex items-center font-medium text-zinc-600">
-                <li @click="getData" :class="[isActiveClass == 'all' ? 'text-orange-500 !border-orange-500' : '']" class="border-b border-zinc-300 lg:px-8 px-2 py-3 cursor-pointer text-sm">Tất cả</li>
-                <li @click="filterStatusProcessing" :class="[isActiveClass == 'processing' ? 'text-orange-500 !border-orange-500' : '']" class="py-3 lg:px-8 px-2 cursor-pointer border-b border-zinc-300 text-sm">Đang thực hiện</li>
-                <li @click="filterStatusDelivering" :class="[isActiveClass == 'delivering' ? 'text-orange-500 !border-orange-500' : '']" class="border-b cursor-pointer border-zinc-300 lg:px-8 px-2 py-3 cursor-pointer text-sm">Đang vận chuyển</li>
-                <li @click="filterStatusSucceed" :class="[isActiveClass == 'succeed' ? 'text-orange-500 !border-orange-500' : '']" class="border-b cursor-pointer border-zinc-300 lg:px-8 px-2 py-3 text-sm">Đã hoàn tất</li>
-                <li @click="filterStatusFailed" :class="[isActiveClass == 'failed' ? 'text-orange-500 !border-orange-500' : '']" class="border-b cursor-pointer border-zinc-300 lg:px-8 px-2 py-3 text-sm">Đã hủy</li>
-              </ul>
-            </div>
-          </template>
-          <template #box-order>
-            <div class="mt-4" v-for="order in orders" :key="order.id" v-if="!isLoadingListProduct">
-              <LayoutBoxOrder @use-click-redirect-detail="useClickRedirectDetail" :code="order.code" :status="order.status"
-                              :createdDate="order.created_at" :orderId="order.id" :subTotal="formatPrice(order.sub_total)"
-                              :items="order.items" @use-click-change-canceled-status-order="useClickChangeCanceledStatusOrder"
-              ></LayoutBoxOrder>
-            </div>
-            <LoadingListProduct v-else />
-            <Pagination class="mt-4" :total="pagination.total" :last-page="pagination.lastPage" v-model:modelValue="page"
-                        v-model:modelBoolean="isLoadingListProduct" @get-data="getData"/>
-          </template>
-        </LayoutOrder>
-      </template>
-    </LayoutProfile>
-    <Footer />
+  <div>
+    <div v-if="!isLoadingPage" class="h-screen">
+      <Header />
+      <LayoutProfile>
+        <template #sidebar>
+          <SidebarProfile />
+        </template>
+        <template #information>
+          <LayoutOrder>
+            <template #navbar-status-order>
+              <div class="mt-10">
+                <ul class="flex items-center font-medium text-zinc-600">
+                  <li @click="getData" :class="[isActiveClass == 'all' ? 'text-orange-500 !border-orange-500' : '']" class="border-b border-zinc-300 lg:px-8 px-2 py-3 cursor-pointer text-sm">Tất cả</li>
+                  <li @click="filterStatusProcessing" :class="[isActiveClass == 'processing' ? 'text-orange-500 !border-orange-500' : '']" class="py-3 lg:px-8 px-2 cursor-pointer border-b border-zinc-300 text-sm">Đang thực hiện</li>
+                  <li @click="filterStatusDelivering" :class="[isActiveClass == 'delivering' ? 'text-orange-500 !border-orange-500' : '']" class="border-b cursor-pointer border-zinc-300 lg:px-8 px-2 py-3 cursor-pointer text-sm">Đang vận chuyển</li>
+                  <li @click="filterStatusSucceed" :class="[isActiveClass == 'succeed' ? 'text-orange-500 !border-orange-500' : '']" class="border-b cursor-pointer border-zinc-300 lg:px-8 px-2 py-3 text-sm">Đã hoàn tất</li>
+                  <li @click="filterStatusFailed" :class="[isActiveClass == 'failed' ? 'text-orange-500 !border-orange-500' : '']" class="border-b cursor-pointer border-zinc-300 lg:px-8 px-2 py-3 text-sm">Đã hủy</li>
+                </ul>
+              </div>
+            </template>
+            <template #box-order>
+              <div class="mt-4" v-for="order in orders" :key="order.id" v-if="!isLoadingListProduct">
+                <LayoutBoxOrder @use-click-redirect-detail="useClickRedirectDetail" :code="order.code" :status="order.status"
+                                :createdDate="order.created_at" :orderId="order.id" :subTotal="formatPrice(order.sub_total)"
+                                :items="order.items" @use-click-change-canceled-status-order="useClickChangeCanceledStatusOrder"
+                ></LayoutBoxOrder>
+              </div>
+              <LoadingListProduct v-else />
+              <Pagination class="mt-4" :total="pagination.total" :last-page="pagination.lastPage" v-model:modelValue="page"
+                          v-model:modelBoolean="isLoadingListProduct" @get-data="getData"/>
+            </template>
+          </LayoutOrder>
+        </template>
+      </LayoutProfile>
+    </div>
+    <LoadingPage v-else />
   </div>
-  <LoadingPage v-else />
+  <Footer />
 </template>
 
 <script setup>
