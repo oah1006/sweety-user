@@ -30,7 +30,6 @@
             <LayoutSummaryOrder v-if="order" :createdAt="order.created_at" :total="order?.total" :subTotal="order?.sub_total"
                                 :shippingFee="order?.shipping_fee" :coupon="order.coupon?.is_percent_value"
             >
-
             </LayoutSummaryOrder>
           </template>
         </LayoutOrderDetail>
