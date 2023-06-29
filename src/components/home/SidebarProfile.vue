@@ -6,13 +6,13 @@
           <p class="font-medium text-lg">{{ profileStore.profile.profile?.full_name }}</p>
           <p class="text-zinc-400 text-md">{{ profileStore.profile.email }}</p>
         </div>
-        <div class="border border-zinc-400 px-2 py-1 ml-auto rounded-lg block lg:hidden">
+        <div class="border border-zinc-400 px-2 py-1 ml-auto rounded-lg block md:hidden lg:hidden">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 ml-auto">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12" />
           </svg>
         </div>
       </div>
-      <div class="lg:mt-20 mt-0 hidden group-hover:block lg:block absolute lg:bg-inherit border border-zinc-300 lg:border-none lg:px-0 lg:py-0 px-4 py-2 rounded-lg right-0 top-12 lg:top-0 bg-white">
+      <div class="lg:mt-20 mt-0 hidden group-hover:block md:block lg:block absolute lg:bg-inherit md:bg-inherit md:border-none md:px-0 md:py-0 md:mt-6 border border-zinc-300 lg:border-none lg:px-0 lg:py-0 px-4 py-2 rounded-lg right-0 top-12 lg:top-0 bg-white">
         <router-link :to="{ name: 'profile' }" class="flex items-center gap-3 block px-2 py-0.5 w-56">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />

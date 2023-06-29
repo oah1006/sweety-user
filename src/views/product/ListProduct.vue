@@ -34,7 +34,7 @@
       </div>
     </template>
     <template #list-products>
-      <div class="sm:grid sm:grid-cols-2 sm:gap-3 md:grid md:grid-cols-2 md:gap-6 lg:grid lg:grid-cols-3 lg:gap-6 mt-6 flex flex-col" v-if="!isLoadingListProduct">
+      <div class="sm:grid sm:grid-cols-2 sm:gap-3 md:grid md:grid-cols-2 md:gap-6 lg:grid lg:grid-cols-2 lg:gap-6 xl:grid xl:grid-cols-3 xl:gap-6 mt-6 flex flex-col" v-if="!isLoadingListProduct">
         <div v-for="product in products" :key="product.id" class="mx-auto">
           <LayoutListProduct :id="product.id" :product="product" :nameProduct="product.name" :price="product.price" :url="product.attachment[0]?.url">
 

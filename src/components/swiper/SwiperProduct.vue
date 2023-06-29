@@ -1,6 +1,6 @@
 <template>
   <swiper
-      :slidesPerView="slidesPerView"
+      :slidesPerView="1"
       :spaceBetween="30"
       :autoplay="{
         delay: 2500,
@@ -9,6 +9,24 @@
       :pagination="{
         clickable: true,
       }"
+      :breakpoints="{
+        '0': {
+          slidesPerView: 1,
+          spaceBetween: 0,
+        },
+        '640': {
+          slidesPerView: 2,
+          spaceBetween: 20,
+        },
+        '768': {
+          slidesPerView: 3,
+          spaceBetween: 40,
+        },
+        '1024': {
+          slidesPerView: 4,
+          spaceBetween: 50,
+        },
+      }"
       :navigation="true"
       :modules="modules"
       class="mySwiper"
@@ -16,12 +34,7 @@
   >
     <swiper-slide v-for="product in bestSellerProduct" :key="product.id">
       <div>
-        <img :src="product.attachment[0]?.url" :class="{
-            'h-full': slidesPerView === 1,
-            'w-full': slidesPerView === 1,
-            'object-cover': slidesPerView === 1,
-            'rounded-2xl': slidesPerView === 1,
-          }">
+        <img :src="product.attachment[0]?.url">
         <p class="text-zinc-600 text-2xl font-medium mt-4">{{ product.name }}</p>
         <p class="text-red-600 font-bold">{{ formatPrice(product.price) }} đồng</p>
       </div>
@@ -49,7 +62,7 @@ export default {
   },
   props: {
     bestSellerProduct: {
-      type: Array, // Kiểu dữ liệu của props là một mảng
+      type: Array,
     },
   },
   setup() {
@@ -58,20 +71,9 @@ export default {
       slidesPerView: 4,
     };
   },
-  mounted() {
-    this.updateSlidesPerView(); // Initial call to set slidesPerView
-  },
   methods: {
     formatPrice(price) {
       return price.toLocaleString("vi-VN");
-    },
-    updateSlidesPerView() {
-      // Update slidesPerView based on screen size
-      if (window.innerWidth < 768) {
-        this.slidesPerView = 1;
-      } else {
-        this.slidesPerView = 4;
-      }
     },
   },
 };

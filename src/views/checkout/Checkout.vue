@@ -80,11 +80,11 @@
           <div class="border border-zinc-200 rounded-lg">
             <div v-for="item in productCarts.cart_items">
               <div>
-                <div class="flex gap-16 items-center py-4 px-4">
-                  <div class="flex gap-3 w-1/2">
-                    <img :src="item.product?.attachment[0]?.url" class="w-20 h-20 object-cover" />
+                <div class="flex justify-between items-center py-4 lg:px-4 px-2">
+                  <div class="flex gap-3">
+                    <img :src="item.product?.attachment[0]?.url" class="lg:w-20 lg:h-20 w-10 h-10 object-cover" />
                     <div>
-                      <p class="text-lg font-medium">{{ item.product?.name }}</p>
+                      <p class="lg:text-lg md:text-lg text-base font-medium">{{ item.product?.name }}</p>
                       <p class="text-zinc-500 text-sm">{{ item.product_variant?.size }}</p>
                       <div v-for="item_topping in item.cart_item_options">
                         <p class="text-sm text-zinc-500">{{ item_topping.topping?.name }} x {{ item_topping?.qty }}</p>
@@ -102,7 +102,7 @@
                       <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM12.75 9a.75.75 0 00-1.5 0v2.25H9a.75.75 0 000 1.5h2.25V15a.75.75 0 001.5 0v-2.25H15a.75.75 0 000-1.5h-2.25V9z" clip-rule="evenodd" />
                     </svg>
                   </div>
-                  <div class="w-1/5">
+                  <div class="">
                     <p>{{ formatPrice(item?.totalPrice * item?.qty) }} đồng</p>
                   </div>
                 </div>

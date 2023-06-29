@@ -15,7 +15,7 @@
       <div v-if="!isLoadingListProduct" class="grow lg:w-3/4 lg:mt-0 mt-4">
         <p class="lg:text-lg text-2xl font-bold text-zinc-800">Các cửa hàng</p>
         <InputSearch class="mt-4" :isLoadingListProduct="isLoadingListProduct" @filter-data="filterData" v-model:modalSearch="search" />
-        <div class="lg:grid lg:grid-cols-2 lg:gap-10 mt-5">
+        <div class="lg:grid lg:grid-cols-2 lg:gap-10 md:grid md:grid-cols-2 md:gap-10 mt-5">
           <div v-for="store in stores" :key="store" class="lg:mt-0 mt-10">
             <SwiperMultipleStore class="h-72 rounded-xl" :attachments="store.attachment"></SwiperMultipleStore>
             <p class="font-bold text-lg border-b py-2 border-zinc-300">{{ store.store_name }}</p>

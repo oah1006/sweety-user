@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <div v-if="!isLoadingPage" class="h-screen">
+    <div v-if="!isLoadingPage">
       <Header />
       <LayoutProfile>
         <template #sidebar>
@@ -34,8 +33,7 @@
         </template>
       </LayoutProfile>
     </div>
-    <LoadingPage v-else />
-  </div>
+  <LoadingPage v-else />
   <Footer />
 </template>
 
