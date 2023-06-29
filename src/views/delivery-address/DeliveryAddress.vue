@@ -6,7 +6,7 @@
         <SidebarProfile />
       </template>
       <template #information>
-        <LayoutDeliveryAddress :delivery_addresses="delivery_addresses">
+        <LayoutDeliveryAddress >
           <template #delivery-address>
             <div v-for="delivery_address in delivery_addresses" :key="delivery_address?.id">
               <BoxDeliveryAddress v-if="delivery_address" @use-click-redirect-update="useClickRedirectUpdate"
@@ -18,6 +18,7 @@
                                   :name="delivery_address?.name" @show-modal="showModal">
 
               </BoxDeliveryAddress>
+              <p v-else>Hết hàng</p>
             </div>
           </template>
           <template #modal-delete>

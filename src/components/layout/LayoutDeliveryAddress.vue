@@ -16,7 +16,6 @@
 
 const props = defineProps({
   isLoadingButton: Boolean,
-  delivery_addresses: Array
 })
 
 </script>

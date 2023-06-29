@@ -42,7 +42,7 @@
                     <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm3 10.5a.75.75 0 000-1.5H9a.75.75 0 000 1.5h6z" clip-rule="evenodd" />
                   </svg>
                   <div>
-                    <input type="text" class="form-input w-7 px-1 py-0 text-center" v-model="topping.qty" ref="input" />
+                    <input disabled type="number" class="form-input w-7 px-1 py-0 text-center" v-model="topping.qty" ref="input" />
                   </div>
                   <svg @click="addToppingQty(topping.id)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-orange-500 cursor-pointer">
                     <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM12.75 9a.75.75 0 00-1.5 0v2.25H9a.75.75 0 000 1.5h2.25V15a.75.75 0 001.5 0v-2.25H15a.75.75 0 000-1.5h-2.25V9z" clip-rule="evenodd" />
@@ -76,7 +76,7 @@
           <div @click="useClickRedirectDetail(product.id)" v-for="product in relatedProduct" :key="product.id" class="cursor-pointer mx-auto flex flex-col items-center lg:items-start lg:flex-none">
             <img :src="product.attachment[0]?.url" class="w-64 h-64 object-cover rounded-lg" />
             <p class="font-medium lg:text-2xl mt-3 font-bold w-56 text-center lg:text-left">{{ product.name }}</p>
-            <p class="text-red-600 font-medium text-lg font-bold">{{ product.price }} đồng</p>
+            <p class="text-red-600 font-medium text-lg font-bold">{{ formatPrice(product.price) }} đồng</p>
           </div>
         </div>
       </div>
@@ -111,6 +111,8 @@ const url = ref('')
 const isLoadingPage = ref(true)
 
 const toppings  = ref({})
+const pricePrimal = ref('')
+const unitPrice = ref('')
 
 const token = $cookies.get('token')
 
@@ -139,6 +141,7 @@ function getDetailProduct() {
         cart.value.product_variant_id = response.data.data.product_variants[0]?.id
 
         product.value = response.data.data
+        pricePrimal.value = response.data.data.price
 
         relatedProductId.value = response.data.data.category_id
 
@@ -164,17 +167,20 @@ getDetailProduct()
 
 function addVariantObject(product_variant_id, unit_price) {
   cart.value.product_variant_id = product_variant_id
-  product.value.price = unit_price
+  unitPrice.value = unit_price
 
   const topping = toppings.value.filter(function(item) {
     return item.qty > 0
   })
 
   const totalTopping = topping.reduce((accumulator, currentProduct) => {
-    return accumulator + currentProduct.price;
+    return accumulator + (currentProduct.price * currentProduct.qty);
   }, 0);
 
-  product.value.price += totalTopping
+  product.value.price = (totalTopping + unit_price)
+
+  console.log(totalTopping, unit_price, product.value.price)
+
 }
 
 function addToppingQty(topping_id) {
@@ -188,9 +194,11 @@ function addToppingQty(topping_id) {
 }
 
 function minusToppingQty(topping_id) {
-  product.value.price -= toppings.value.find(function(item) {
-    return item.id == topping_id
-  }).price
+  if (pricePrimal.value != product.value.price && unitPrice.value != product.value.price) {
+    product.value.price -= toppings.value.find(function(item) {
+      return item.id == topping_id
+    }).price
+  }
 
   const topping = toppings.value.find(function(item) {
     return item.id == topping_id
