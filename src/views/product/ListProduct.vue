@@ -152,6 +152,9 @@ function filterData(id = null, price_low_to_high = '', price_high_to_low = '') {
 
     useIndexProductApi(page.value, search.value, id, currentSort.value.price_low_to_high ,currentSort.value.price_high_to_low)
         .then((response) => {
+          pagination.value.lastPage = response.data.data.last_page
+          pagination.value.total = response.data.data.total
+
           products.value = response.data.data.data
 
           isLoadingListProduct.value = false
