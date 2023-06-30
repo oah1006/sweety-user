@@ -9,9 +9,6 @@
         </svg>
         <p class="text-center">Khuyến mãi</p>
       </div>
-      <div class="px-4 py-4">
-        <InputSearch />
-      </div>
       <div class="py-2 bg-zinc-100 pl-3">
         <p>Mã khuyến mãi của bạn</p>
       </div>
@@ -20,8 +17,6 @@
   </div>
 </template>
 <script setup>
-import InputSearch from "@/components/input/InputSearch.vue";
-
 const emits = defineEmits(['close-modal'])
 
 function closeModal() {

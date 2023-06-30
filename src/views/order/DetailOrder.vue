@@ -14,7 +14,7 @@
             <LayoutBoxInformationOrder :name="order.address?.name" :phoneNumber="order.address?.phone_number"
                                        :streetNumber="order.address?.street_number" :street="order.address?.street"
                                        :ward="order.address?.ward.full_name" :district="order.address?.district.full_name"
-                                       :province="order.address?.province.full_name" :nameDeliveryStaff="order.delivery_staff?.full_name"
+                                       :province="order.address?.province.full_name" :urlDeliveryStaff="order.delivery_staff?.attachment.url" :nameDeliveryStaff="order.delivery_staff?.full_name"
                                        :phoneNumberDeliveryStaff="order.delivery_staff?.phone_number"
             ></LayoutBoxInformationOrder>
           </template>
@@ -71,7 +71,7 @@ function getData() {
       .then((response) => {
         order.value = response.data.data
 
-        console.log(order.value)
+        console.log(order.value.delivery_staff?.attachment.url)
 
         const totalObject = order.value.items.map(item => {
           const optionsPrice = item.order_item_options.reduce((acc, option) => acc + (option.topping.price * option.qty), 0);

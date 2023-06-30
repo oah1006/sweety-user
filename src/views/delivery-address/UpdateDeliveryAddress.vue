@@ -5,7 +5,7 @@
       <SidebarProfile />
     </template>
     <template #information>
-      <LayoutCreateDeliveryAddress text="Cập nhật" @submit.prevent="submit">
+      <LayoutFormDeliveryAddress text="Cập nhật" @submit.prevent="submit">
         <template #box-delivery-address-layout>
           <BoxInputAddressLayout>
             <template #address>
@@ -58,7 +58,7 @@
             </template>
           </BoxInputAddressLayout>
         </template>
-      </LayoutCreateDeliveryAddress>
+      </LayoutFormDeliveryAddress>
     </template>
   </LayoutProfile>
   <LoadingPage v-else />
@@ -69,7 +69,7 @@
 
 import Header from "@/components/home/Header.vue"
 import LayoutProfile from "@/components/layout/LayoutProfile.vue";
-import LayoutCreateDeliveryAddress from "@/components/layout/LayoutFormDeliveryAddress.vue";
+import LayoutFormDeliveryAddress from "@/components/layout/LayoutFormDeliveryAddress.vue";
 import SidebarProfile from "@/components/home/SidebarProfile.vue";
 import BoxInputAddressLayout from "@/components/delivery_address/BoxInputAddressLayout.vue";
 import BoxInputDeliveryAddress from "@/components/delivery_address/BoxInputDeliveryAddress.vue";

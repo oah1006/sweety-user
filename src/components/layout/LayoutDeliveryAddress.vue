@@ -6,10 +6,10 @@
         Tạo mới
       </router-link>
     </div>
-
     <slot name="delivery-address"></slot>
     <slot name="modal-delete"></slot>
   </div>
+
 </template>
 
 <script setup>

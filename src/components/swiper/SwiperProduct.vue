@@ -33,7 +33,7 @@
 
   >
     <swiper-slide v-for="product in bestSellerProduct" :key="product.id">
-      <div>
+      <div @click="directProduct(product.id)">
         <img :src="product.attachment[0]?.url">
         <p class="text-zinc-600 text-2xl font-medium mt-4">{{ product.name }}</p>
         <p class="text-red-600 font-bold">{{ formatPrice(product.price) }} đồng</p>
@@ -51,6 +51,8 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 
 import '@/style/style.css'
+
+import {useRoute, useRouter} from "vue-router";
 
 // import required modules
 import { Autoplay, Pagination } from 'swiper';
@@ -75,6 +77,15 @@ export default {
     formatPrice(price) {
       return price.toLocaleString("vi-VN");
     },
+    directProduct(id) {
+        this.$router.push({
+          name: 'detail-product',
+          params: {
+            id: id
+          },
+          replace: true
+        },)
+    }
   },
 };
 

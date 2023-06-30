@@ -33,7 +33,7 @@
                 </svg>
               </div>
               <div class="lg:flex lg:items-center lg:gap-2 w-full">
-                <div class="flex items-center gap-2 w-full">
+                <div class="flex items-center gap-2 w-full select-none">
                   <p class="text-lg">{{ topping.name }}</p>
                   <p class="text-lg">+ {{ topping.price }} đồng</p>
                 </div>
@@ -98,6 +98,7 @@ import {useRoute, useRouter} from "vue-router";
 import LoadingPage from "@/components/LoadingPage.vue";
 import ModalRequireLogin from "@/components/ModalRequireLogin.vue";
 import Footer from "@/components/home/Footer.vue";
+import {useProfileStore} from "@/stores/getMyProfile";
 
 const router = useRouter();
 
@@ -116,7 +117,7 @@ const unitPrice = ref('')
 
 const token = $cookies.get('token')
 
-let isModalRequireLogin = ref(false)
+const isModalRequireLogin = ref(false)
 
 const cart = ref({
   product_variant_id: '',
@@ -125,7 +126,6 @@ const cart = ref({
 function getToppings() {
   useIndexToppingApi()
       .then((response) => {
-        console.log(response.data.data)
         toppings.value = response.data.data.map(function(item) {
           item.qty = 0
           return item
@@ -148,6 +148,14 @@ function getDetailProduct() {
         getRelatedProduct();
 
         isLoadingPage.value = false
+
+        if (token) {
+          isModalRequireLogin.value = false
+        } else {
+          isModalRequireLogin.value = true
+        }
+
+        console.log(isModalRequireLogin.value)
 
         if (response.data.data.attachment.length > 0) {
           const attachments = response.data.data.attachment
@@ -178,9 +186,6 @@ function addVariantObject(product_variant_id, unit_price) {
   }, 0);
 
   product.value.price = (totalTopping + unit_price)
-
-  console.log(totalTopping, unit_price, product.value.price)
-
 }
 
 function addToppingQty(topping_id) {
@@ -227,10 +232,9 @@ function addToCart() {
       .then((response) => {
         router.push({ name: 'checkout' })
         isLoadingPage.value = false
-        isModalRequireLogin.value = false
       })
       .catch((error) => {
-        isModalRequireLogin.value = true
+        console.log(error.response.data)
       })
 }
 

@@ -6,17 +6,25 @@
         <SidebarProfile />
       </template>
       <template #information>
-        <LayoutDeliveryAddress >
+        <LayoutDeliveryAddress>
           <template #delivery-address>
-            <div v-for="delivery_address in delivery_addresses" :key="delivery_address?.id">
-              <BoxDeliveryAddress v-if="delivery_address" @use-click-redirect-update="useClickRedirectUpdate"
-                                  :street="delivery_address?.street" :street_number="delivery_address?.street_number"
-                                  :ward="delivery_address?.ward.full_name" :district="delivery_address?.district.full_name"
-                                  :province="delivery_address?.province?.full_name" :phone_number="delivery_address?.phone_number"
-                                  :id="delivery_address?.id" :name="delivery_address?.name" @show-modal="showModal">
-
-              </BoxDeliveryAddress>
-              <p v-else>Hết hàng</p>
+            <div v-if="delivery_addresses.length > 0">
+              <div v-for="delivery_address in delivery_addresses" :key="delivery_address?.id">
+                <BoxDeliveryAddress  @use-click-redirect-update="useClickRedirectUpdate"
+                                    :street="delivery_address?.street" :street_number="delivery_address?.street_number"
+                                    :ward="delivery_address?.ward.full_name" :district="delivery_address?.district.full_name"
+                                    :province="delivery_address?.province?.full_name" :phone_number="delivery_address?.phone_number"
+                                    :id="delivery_address?.id" :name="delivery_address?.name" @show-modal="showModal">
+                </BoxDeliveryAddress>
+              </div>
+            </div>
+            <div class="flex items-center justify-center w-full mt-16" v-else>
+              <div class="flex flex-col items-center justify-center w-1/2 gap-4">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-16 h-16 text-zinc-400">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
+                </svg>
+                <p class="text-center text-zinc-600">Hiện tại bạn vẫn chưa có địa chỉ nào. Bạn hãy tạo địa chỉ để Sweety có thể giao hàng cho bạn nhé!</p>
+              </div>
             </div>
           </template>
           <template #modal-delete>
@@ -62,7 +70,7 @@ const isLoadingPage = ref(true)
 function getData() {
   useIndexDeliveryAddressApi()
       .then((response) => {
-        console.log(response.data.data)
+        console.log(delivery_addresses.value)
         delivery_addresses.value = response.data.data
 
         isLoadingPage.value = false

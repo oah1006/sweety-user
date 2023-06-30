@@ -7,6 +7,9 @@
     <template #information>
       <LayoutInformation @submit.prevent="submit" :isLoadingButton="isLoadingButton">
         <template #box-input>
+          <div class="text-red-900 mt-2 text-md px-4 py-4 bg-red-100 rounded-md h-26" v-if="errors?.message">
+            <p>{{ errors?.message }}</p>
+          </div>
           <InputBox name="Địa chỉ e-mail" padding="py-6" position="relative" group="group">
             <template #input>
               <InputEmail disabled v-model:modelEmail="customer.email"/>
@@ -48,7 +51,7 @@ import {ref} from "vue";
 import { useProfileStore } from "@/stores/getMyProfile";
 import {useToastStore} from "@/stores/toast";
 
-
+const errors = ref({})
 
 const isLoadingButton = ref(false)
 
@@ -68,6 +71,11 @@ async function submit() {
         .then((response) => {
           profileStore.getMyProfile()
           useToastStore().success('Cập nhật thông tin thành công', 3000)
+          isLoadingButton.value = false
+          errors.value = null
+        })
+        .catch((error) => {
+          errors.value = error.response.data
           isLoadingButton.value = false
         })
   }, 1000)

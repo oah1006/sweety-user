@@ -94,8 +94,8 @@ function submit() {
         router.push({ path: '/login' })
       })
       .catch((error) => {
-          errors.value = error.response.data
-        })
+        errors.value = error.response.data
+      })
 }
 
 

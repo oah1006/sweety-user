@@ -4,6 +4,9 @@
     <LayoutCheckout v-if="!isLoadingPage">
       <template #address-customer>
         <div>
+          <div class="text-red-900 my-2 text-md px-4 py-2 bg-red-100 rounded-md h-26" v-if="errors?.message">
+            <p>{{ errors?.message }}</p>
+          </div>
           <div class="flex items-center gap-8 border border-zinc-200 rounded-lg px-4 py-2">
             <div class="w-1/5">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-16 h-16 text-orange-400">
@@ -194,6 +197,7 @@ const deliveryAddressDefault = ref('')
 const selectedDeliveryAddressId = ref(null)
 const addressStore = ref([])
 
+const errors = ref({})
 
 const isLoadingPage = ref(true)
 
@@ -347,9 +351,14 @@ function chooseMyDeliveryAddressOrder(address_id, address) {
 function submit() {
   useStoreOrderApi()
       .then((response) => {
+        errors.value = null
         router.push({
           name: 'order'
         })
+      })
+      .catch((error) => {
+        console.log(error.response.data)
+        errors.value = error.response.data
       })
 }
 

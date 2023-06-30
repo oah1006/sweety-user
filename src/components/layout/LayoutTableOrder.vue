@@ -16,7 +16,15 @@
     <div>
       <div class="flex items-center gap-2 text-zinc-500">
         <p>{{ formatPrice(props.unitPrice) }} đồng</p>
-        <p>x {{ props.qty }}</p>
+        <p class="ml-auto">x {{ props.qty }}</p>
+      </div>
+      <div>
+        <div v-for="item_topping in props.item.order_item_options">
+          <div class="flex items-center gap-2 text-zinc-500">
+            <p>{{ formatPrice(item_topping.topping?.price) }} đồng</p>
+            <p class="ml-auto"> x {{ item_topping.qty }}</p>
+          </div>
+        </div>
       </div>
       <p>Tổng: <span class="text-red-600 font-bold">{{ formatPrice(props.item.totalPrice * props.item.qty) }} đồng</span> </p>
     </div>

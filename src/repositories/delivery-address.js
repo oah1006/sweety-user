@@ -88,8 +88,6 @@ export function useGetDeliveryAddressInformationApi() {
     const route = useRoute();
     const id = route.params.id
 
-    console.log(id)
-
     const config = {
         headers: {
             Authorization: `Bearer ${token}`,

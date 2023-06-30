@@ -100,8 +100,6 @@ function filterData(province_id = null) {
 
   provinceId.value = province_id
 
-  console.log(provinceId.value)
-
   debounce.value = setTimeout(() => {
     isLoadingListProduct.value = true
 
