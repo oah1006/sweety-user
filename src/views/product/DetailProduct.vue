@@ -1,6 +1,6 @@
 <template>
   <Header></Header>
-  <LayoutDetailProduct v-if="!isLoadingPage" class="mt-14">
+  <LayoutDetailProduct :nameProduct="product.name" v-if="!isLoadingPage" class="mt-14">
     <template #image>
       <div>
         <img :src="url" class="lg:w-full lg:h-[550px] md:w-96 md:h-96 object-cover rounded-lg" />
@@ -35,7 +35,7 @@
               <div class="lg:flex lg:items-center lg:gap-2 w-full">
                 <div class="flex items-center gap-2 w-full select-none">
                   <p class="text-lg">{{ topping.name }}</p>
-                  <p class="text-lg">+ {{ topping.price }} đồng</p>
+                  <p class="text-lg">+ {{ formatPrice(topping.price) }} đồng</p>
                 </div>
                 <div class="flex items-center gap-3">
                   <svg @click="minusToppingQty(topping.id)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-orange-500 cursor-pointer">
@@ -98,7 +98,7 @@ import {useRoute, useRouter} from "vue-router";
 import LoadingPage from "@/components/LoadingPage.vue";
 import ModalRequireLogin from "@/components/ModalRequireLogin.vue";
 import Footer from "@/components/home/Footer.vue";
-import {useProfileStore} from "@/stores/getMyProfile";
+
 
 const router = useRouter();
 

@@ -13,7 +13,7 @@
         <p v-else-if="props.status == 'prepared'" class="text-md text-yellow-400 font-medium">Đơn hàng chuẩn bị xong</p>
         <p v-else-if="props.status == 'delivering'" class="text-md text-violet-500 font-medium">Đơn hàng đang vận chuyển</p>
         <p v-else-if="props.status == 'succeed'" class="text-md text-green-500 font-medium">Đơn hàng thành công</p>
-        <p v-else-if="props.status == 'canceled'" class="text-md text-red-500 font-medium">Đơn hàng đã từ chối</p>
+        <p v-else-if="props.status == 'canceled'" class="text-md text-red-500 font-medium">Đơn hàng đã bị hủy</p>
         <p v-else class="text-md text-black font-medium">Đơn hàng thất bại</p>
       </div>
     </div>

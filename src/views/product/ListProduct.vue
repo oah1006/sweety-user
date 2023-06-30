@@ -28,7 +28,7 @@
         </div>
         <div v-if="isPopup" class="bg-white w-56 lg:w-full border border-zinc-400 absolute top-10 lg:right-10 z-50">
           <p @click="filterData(null, '', '')" class="hover:bg-orange-50 px-6 py-3 text-md cursor-pointer font-medium text-zinc-600">Không</p>
-          <p @click="filterData(isCategory, 'price_low_to_high')" class="hover:bg-orange-50 px-6 py-3 text-md cursor-pointer font-medium text-zinc-600">Giá từ thấp đến cao</p>
+          <p @click="filterData(isCategory, 'price_low_to_high', '')" class="hover:bg-orange-50 px-6 py-3 text-md cursor-pointer font-medium text-zinc-600">Giá từ thấp đến cao</p>
           <p @click="filterData(isCategory, '', 'price_high_to_low')" class="hover:bg-orange-50 px-6 py-3 text-md cursor-pointer font-medium text-zinc-600">Giá từ cao đến thấp</p>
         </div>
       </div>
@@ -134,10 +134,12 @@ function filterData(id = null, price_low_to_high = '', price_high_to_low = '') {
     label.value = 'Giá từ thấp đến cao'
     isPopup.value = false
     currentSort.value.price_low_to_high = price_low_to_high
+    currentSort.value.price_high_to_low = ''
   } else if (price_high_to_low) {
     label.value = 'Giá từ cao đến thấp'
     isPopup.value = false
     currentSort.value.price_high_to_low =  price_high_to_low
+    currentSort.value.price_low_to_high = ''
   } else {
     label.value = 'Bộ lọc'
     isPopup.value = false

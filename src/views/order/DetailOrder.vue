@@ -8,7 +8,7 @@
       <template #information>
         <LayoutOrderDetail :status="order.status" :code="order.code" :createdAt="order.created_at">
           <template #process-status-order>
-            <ProcessStatusOrder @getData="getData" :orderTrackings="order.order_trackings"></ProcessStatusOrder>
+            <ProcessStatusOrder @getData="getData" :orderTrackings="order.order_trackings" :status="order.status"></ProcessStatusOrder>
           </template>
           <template #box-information-order>
             <LayoutBoxInformationOrder :name="order.address?.name" :phoneNumber="order.address?.phone_number"
@@ -71,7 +71,7 @@ function getData() {
       .then((response) => {
         order.value = response.data.data
 
-        console.log(order.value.delivery_staff?.attachment.url)
+        console.log(order.value)
 
         const totalObject = order.value.items.map(item => {
           const optionsPrice = item.order_item_options.reduce((acc, option) => acc + (option.topping.price * option.qty), 0);
