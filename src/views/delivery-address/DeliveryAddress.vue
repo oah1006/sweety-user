@@ -13,9 +13,7 @@
                                   :street="delivery_address?.street" :street_number="delivery_address?.street_number"
                                   :ward="delivery_address?.ward.full_name" :district="delivery_address?.district.full_name"
                                   :province="delivery_address?.province?.full_name" :phone_number="delivery_address?.phone_number"
-                                  :isDefault="delivery_address?.is_default" @change-is-default="changeIsDefault"
-                                  :id="delivery_address?.id"
-                                  :name="delivery_address?.name" @show-modal="showModal">
+                                  :id="delivery_address?.id" :name="delivery_address?.name" @show-modal="showModal">
 
               </BoxDeliveryAddress>
               <p v-else>Hết hàng</p>
@@ -44,11 +42,10 @@ import ModalDelete from "@/components/ModalDelete.vue";
 import Footer from "@/components/home/Footer.vue";
 
 import {
-  useChangeIsDefaultDeliveryAddressApi,
   useDeleteDeliveryAddressApi,
   useIndexDeliveryAddressApi
 } from "@/repositories/delivery-address";
-import { ref, watch } from "vue";
+import { ref } from "vue";
 import {useToastStore} from "@/stores/toast";
 import {useRouter} from "vue-router";
 
@@ -65,18 +62,10 @@ const isLoadingPage = ref(true)
 function getData() {
   useIndexDeliveryAddressApi()
       .then((response) => {
+        console.log(response.data.data)
         delivery_addresses.value = response.data.data
 
         isLoadingPage.value = false
-      })
-}
-
-
-function changeIsDefault(id) {
-  useChangeIsDefaultDeliveryAddressApi(id)
-      .then((response) => {
-        useToastStore().success('Cập nhật địa chỉ mặc định thành công', 3000)
-        getData()
       })
 }
 

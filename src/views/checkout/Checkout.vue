@@ -21,7 +21,7 @@
             </div>
           </div>
           <div v-if="isDeliveryAddressModal" class="mt-1 border border-zinc-300 rounded-lg">
-            <div v-if="delivery_addresses" >
+            <div v-if="delivery_addresses.length != 0" >
               <div v-for="delivery_address in delivery_addresses" :key="delivery_address.id">
                 <div @click="chooseMyDeliveryAddressOrder(delivery_address.id, delivery_address)" :class="[deliveryAddressDefault.id == delivery_address.id ? 'bg-orange-500' : '']"
                      class="flex items-center gap-3 py-3 px-5 cursor-pointer">
@@ -190,7 +190,7 @@ const delivery_addresses = ref([])
 
 const isModal = ref(false)
 const isDeliveryAddressModal = ref(false)
-const deliveryAddressDefault = ref([])
+const deliveryAddressDefault = ref('')
 const selectedDeliveryAddressId = ref(null)
 const addressStore = ref([])
 
@@ -211,13 +211,11 @@ function getIndexAddToCart() {
         if (response.data.data) {
           productCarts.value = response.data.data
 
-          console.log(productCarts.value)
-
-          if (response.data.data.address) {
-            deliveryAddressDefault.value = response.data.data.address
-          } else {
-            deliveryAddressDefault.value = ''
-          }
+          // if (response.data.data.address) {
+          //   deliveryAddressDefault.value = response.data.data.address
+          // } else {
+          //   deliveryAddressDefault.value = ''
+          // }
 
           if (response.data.data.store) {
             addressStore.value = response.data.data.store
@@ -276,8 +274,6 @@ function minusToppingQty(item_id) {
   useMinusCartItemApi(item_id)
       .then((response) => {
         productCarts.value = response.data.data
-
-        console.log(productCarts.value)
 
         const totalObject = productCarts.value.cart_items.map(item => {
           const optionsPrice = item.cart_item_options.reduce((acc, option) => acc + (option.topping.price * option.qty), 0);

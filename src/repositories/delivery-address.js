@@ -100,19 +100,6 @@ export function useGetDeliveryAddressInformationApi() {
         .get(process.env.VUE_APP_ENV_VARIABLE + '/public/delivery-addresses/' + id, config)
 }
 
-export function useChangeIsDefaultDeliveryAddressApi(id) {
-    const token = $cookies.get('token')
-
-    const config = {
-        headers: {
-            Authorization: `Bearer ${token}`,
-        },
-    }
-
-    return axios
-        .put(process.env.VUE_APP_ENV_VARIABLE + '/public/delivery-addresses/change-is-default/' + id, {}, config)
-}
-
 export function useIndexProvinceApi() {
     const token = $cookies.get('token')
 

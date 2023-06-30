@@ -1,23 +1,12 @@
 <template>
   <div class="py-12 lg:flex lg:items-center border-b border-zinc-300">
     <div class="flex-none">
-      <p v-show="isDefault === 1" class="rounded-lg border border-orange-400 w-24 text-center text-orange-500 font-medium mb-4">Mặc định</p>
       <p class="lg:text-lg md:text-md text-lg font-medium w-96 mb-4">{{ props.street_number }}, đường {{ props.street }}, phường {{ props.ward }},
         {{ props.district }}, {{ props.province }}</p>
       <p class="text-lg text-zinc-700">{{ props.name }}</p>
       <p class="text-lg text-zinc-600">{{ props.phone_number }}</p>
     </div>
     <div class="flex gap-4 items-center ml-auto lg:mt-0 mt-4">
-      <div class="group">
-<!--  no fill -->
-        <svg v-show="isDefault === 0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="lg:w-7 lg:h-7 md:w-6 md:h-6 w-7 h-7 block group-hover:hidden cursor-pointer">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-        </svg>
-<!--  fill -->
-        <svg @click="changeIsDefault(props.id)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="lg:w-7 lg:h-7 md:w-6 md:h-6 w-7 h-7 text-orange-500" :class="[isDefault === 1 ? 'block' : 'hidden group-hover:block']">
-          <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
-        </svg>
-      </div>
       <button @click="useClickRedirectUpdate(props.id)">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="lg:w-7 lg:h-7 md:w-6 md:h-6 w-7 h-7">
           <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
@@ -34,12 +23,8 @@
 
 <script setup>
 
-import {ref} from "vue";
-
-
 const props = defineProps({
   id: Number,
-  isDefault: Boolean,
   street: String,
   street_number: String,
   ward: String,
@@ -49,11 +34,7 @@ const props = defineProps({
   name: String
 })
 
-const emits = defineEmits(['change-is-default', 'useClickRedirectUpdate', 'show-modal'])
-
-function changeIsDefault(id) {
-  emits('change-is-default', id)
-}
+const emits = defineEmits(['useClickRedirectUpdate', 'show-modal'])
 
 function useClickRedirectUpdate(id) {
   emits('use-click-redirect-update', id)
