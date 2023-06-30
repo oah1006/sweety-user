@@ -149,14 +149,6 @@ function getDetailProduct() {
 
         isLoadingPage.value = false
 
-        if (token) {
-          isModalRequireLogin.value = false
-        } else {
-          isModalRequireLogin.value = true
-        }
-
-        console.log(isModalRequireLogin.value)
-
         if (response.data.data.attachment.length > 0) {
           const attachments = response.data.data.attachment
 
