@@ -52,7 +52,7 @@
           </div>
           <div class="mt-4">
             <p>Mật khẩu</p>
-            <input type="text" name="Mật khẩu" placeholder="Mật khẩu" v-model="customer.password" class="outline-orange-500/[.55] mt-1 w-full text-gray-700 bg-white border border-solid border-zinc-300 rounded py-2 px-4">
+            <input type="password" name="Mật khẩu" placeholder="Mật khẩu" v-model="customer.password" class="outline-orange-500/[.55] mt-1 w-full text-gray-700 bg-white border border-solid border-zinc-300 rounded py-2 px-4">
           </div>
         </div>
         <button type="submit" class="px-4 py-2 bg-orange-400 w-full mt-8 rounded-md text-white font-bold">Đăng nhập</button>
