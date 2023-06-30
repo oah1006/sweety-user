@@ -18,12 +18,12 @@
       <form class="mt-6 px-4" @submit.prevent="submit">
         <div class="mt-2">
           <p>Mật khẩu mới</p>
-          <input type="text" name="otp" placeholder="Mật khẩu mới" v-model="formForgotPassword.new_password"
+          <input type="password" name="otp" placeholder="Mật khẩu mới" v-model="formForgotPassword.new_password"
                  class="form-input mt-1 w-full text-gray-700 bg-white border border-solid border-zinc-300 rounded py-2 px-4">
         </div>
         <div class="mt-2">
           <p>Xác nhận lại mật khẩu</p>
-          <input type="text" name="otp" placeholder="Xác nhận lại mật khẩu" v-model="formForgotPassword.new_password_confirmation"
+          <input type="password" name="otp" placeholder="Xác nhận lại mật khẩu" v-model="formForgotPassword.new_password_confirmation"
                  class="form-input mt-1 w-full text-gray-700 bg-white border border-solid border-zinc-300 rounded py-2 px-4">
         </div>
         <input type="hidden" name="email" placeholder="Email" v-model="formForgotPassword.email" class="outline-orange-500/[.55] mt-1 w-full text-gray-700 bg-white border border-solid border-zinc-300 rounded py-2 px-4">
