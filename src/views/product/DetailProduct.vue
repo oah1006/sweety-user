@@ -211,6 +211,12 @@ function minusToppingQty(topping_id) {
 }
 
 function addToCart() {
+  if (token) {
+    isModalRequireLogin.value = false
+  } else {
+    isModalRequireLogin.value = true
+  }
+
   const cartItemOptions = toppings.value.filter(function(item) {
     return item.qty > 0
   }).map(function (item) {
